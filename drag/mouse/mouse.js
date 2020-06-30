@@ -90,6 +90,9 @@
 
   dragableBox.onmousedown = function (e) {
     e.stopPropagation();
+    // 参考： https://www.cnblogs.com/jiangxiaobo/p/6593584.html
+    //  https://developer.mozilla.org/zh-CN/docs/Web/API/MouseEvent/clientX
+    // 使用clientX和pageX都可以，因为你计算的是鼠标相对元素左上角的位置
     const distanceX = e.clientX - this.offsetLeft;
     const distanceY = e.clientY - this.offsetTop;
     document.onmousemove = function (e) {

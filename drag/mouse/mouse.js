@@ -1,7 +1,7 @@
 /**
  * 功能：1. 拖动， 2. 限定范围， 3. 吸附效果 4. 拖动进入目标元素变色
  * 备注：目前没有做兼容处理，可能存在兼容性问题
- * 演示：先演示，再画图，再讲代码
+ * 演示：先演示，再画图，再讲代码（html，css，js）
 */
 (function () {
   const dragableBox = document.getElementById("dragable-box");

@@ -29,6 +29,9 @@ ul,li{
   align-items: center;
   justify-content: center;
 }
+/* #page-content li:first-child{
+  background-color: #b6e0c5;
+} */
 #dragable-box{
   position: absolute;
   user-select: none;

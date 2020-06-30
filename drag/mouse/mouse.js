@@ -76,6 +76,7 @@
     const targetElementTop = targetElement.offsetTop;
     const targetElementBottom = targetElementTop + targetElement.offsetHeight; 
 
+    // 只有上下相交判断，左右相交同理，很多面试题会考到
     if(dragableBoxBottom < targetElementTop ||
       dragableBoxTop > targetElementBottom){
       // 离开目标元素
@@ -108,6 +109,7 @@
       } else if (topY > maxTopY) {
         topY = maxTopY;
       }
+
       dragableBox.style.left = leftX + "px";
       dragableBox.style.top = topY + "px";    
 

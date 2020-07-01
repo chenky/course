@@ -20,9 +20,12 @@ ul,li{
 #content{
   position: relative;
 }
-#page-content li{
-  margin-bottom: 20px;
+#page-content{
   position: relative;
+}
+#page-content li{
+  /* position: relative; */
+  margin-bottom: 20px;  
   width: 100%;
   height: 300px;
   background-color:#ffffff;
@@ -35,9 +38,9 @@ ul,li{
 } */
 #dragable-box{
   position: absolute;
-  user-select: none;
   left: 20px;
   top: 20px;
+  user-select: none;
   width: 80px;
   height: 80px;
   cursor: move;

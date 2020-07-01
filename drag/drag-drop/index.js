@@ -26,52 +26,68 @@
   const dragableBox = document.getElementById("dragable-box");
   // const content = document.getElementById("content");
   const pageContent = document.getElementById("page-content");
-  const { offsetWidth: pageWidth, offsetHeight: pageHeight } = pageContent.children[0]
-  const { offsetWidth: dragableBoxWidth, offsetHeight: dragableBoxHeight } = dragableBox
-  const pageGap = 20
+  const {
+    offsetWidth: pageWidth,
+    offsetHeight: pageHeight,
+  } = pageContent.children[0];
+  const {
+    offsetWidth: dragableBoxWidth,
+    offsetHeight: dragableBoxHeight,
+  } = dragableBox;
+  const pageGap = 20;
   // 默认在第一页
-  let lastPage=1
-  // 上一个进入的元素
-  // let lastEnterTarget;
-  let disx=0
-  let disy=0
+  let lastPage = 1;
+  // over元素数组
+  let enterTarget = new Set();
+  let disx = 0;
+  let disy = 0;
 
   // 被拖动框只能在限定范围，并且不可以在间隙中
-  function getLegalityPos(left, top, pageWidth, pageHeight, dragableBoxWidth, dragableBoxHeight, pageGap) {
+  function getLegalityPos(
+    left,
+    top,
+    pageWidth,
+    pageHeight,
+    dragableBoxWidth,
+    dragableBoxHeight,
+    pageGap
+  ) {
     // 每页的高度加上页与页之间的间隙
-    const pageOutHeight = pageHeight + pageGap
+    const pageOutHeight = pageHeight + pageGap;
     // 相对当前页的top坐标
-    const remainder = top % pageOutHeight
+    const remainder = top % pageOutHeight;
     // 拖动到第几页了, 如果算出来是0，则需要改成第一页
-    const currentPage = Math.ceil(top / pageOutHeight) || 1
-    const resPos = {}
+    const currentPage = Math.ceil(top / pageOutHeight) || 1;
+    const resPos = {};
     if (remainder >= 0 && remainder <= pageHeight - dragableBoxHeight) {
       // 说明没有跨页，就在第一页
-      resPos.page = currentPage
-      resPos.top = top
+      resPos.page = currentPage;
+      resPos.top = top;
       // 相对当前页的定位
-      resPos.currentPageTop = remainder
+      resPos.currentPageTop = remainder;
     } else {
       // 跨页了，需要根据签章的大于一半的部分在哪一页，然后移动到哪一页
       // 如果remainder<=每页高度-(签章高度-间距)/2, 说明要移动到前面一页，否则就是后面一页
       if (remainder <= pageHeight - (dragableBoxHeight - pageGap) / 2) {
         // 移动到前一页
-        resPos.page = currentPage
-        resPos.top = currentPage * (pageHeight + pageGap) - pageGap - dragableBoxHeight
+        resPos.page = currentPage;
+        resPos.top =
+          currentPage * (pageHeight + pageGap) - pageGap - dragableBoxHeight;
         // 相对当前页的定位
-        resPos.currentPageTop = pageHeight - dragableBoxHeight
+        resPos.currentPageTop = pageHeight - dragableBoxHeight;
       } else {
         // 移动到下一页
-        resPos.page = currentPage + 1
-        resPos.top = currentPage * (pageHeight + pageGap)
+        resPos.page = currentPage + 1;
+        resPos.top = currentPage * (pageHeight + pageGap);
         // 相对当前页的定位
-        resPos.currentPageTop = 0
+        resPos.currentPageTop = 0;
       }
     }
-    const tempLeft = left<=0 ? 0 : Math.min(left, pageWidth - dragableBoxWidth)
-    resPos.left = tempLeft
-    resPos.currentPageLeft = tempLeft
-    return resPos
+    const tempLeft =
+      left <= 0 ? 0 : Math.min(left, pageWidth - dragableBoxWidth);
+    resPos.left = tempLeft;
+    resPos.currentPageLeft = tempLeft;
+    return resPos;
   }
 
   /**
@@ -81,12 +97,12 @@
     "dragstart",
     function (event) {
       // 使其半透明
-      const { target, clientX, clientY } = event
-      const { id, style, offsetLeft, offsetTop } = target
-      style.opacity=0.5
-      disx = clientX - offsetLeft
-      disy = clientY - offsetTop
-      event.dataTransfer.setData('text/plain', id)
+      const { target, clientX, clientY } = event;
+      const { id, style, offsetLeft, offsetTop } = target;
+      style.opacity = 0.5;
+      disx = clientX - offsetLeft;
+      disy = clientY - offsetTop;
+      event.dataTransfer.setData("text/plain", id);
       event.dataTransfer.effectAllowed = "move";
     },
     false
@@ -97,7 +113,7 @@
     function (event) {
       // console.log('dragend')
       // 重置透明度
-      event.target.style.opacity = "";      
+      event.target.style.opacity = "";
     },
     false
   );
@@ -111,6 +127,10 @@
     function (event) {
       // 阻止默认动作以启用drop
       event.preventDefault();
+      // if (event.target.className == "dropzone") {
+      //   event.target.style.backgroundColor = "#b6e0c5";
+      //   enterTarget.add(event.target)
+      // }
     },
     false
   );
@@ -120,7 +140,9 @@
     function (event) {
       // 当可拖动的元素进入可放置的目标时高亮目标节点
       if (event.target.className == "dropzone") {
+        // console.log('dragenter')
         event.target.style.backgroundColor = "#b6e0c5";
+        // enterTarget.add(event.target)
       }
     },
     false
@@ -132,6 +154,8 @@
       // 当拖动元素离开可放置目标节点，重置其背景
       // console.log(event.target,'drag leave')
       if (event.target.className == "dropzone") {
+        // console.log('dragleave')
+        // console.log('drag leave clear background')
         event.target.style.backgroundColor = "";
       }
     },
@@ -147,28 +171,51 @@
       // 阻止默认动作（如打开一些元素的链接）
       event.preventDefault();
       // event.dataTransfer.dropEffect = "move"
-      const { target, clientX, clientY } = event 
+      const { target, clientX, clientY } = event;
 
-      const dragObjId = event.dataTransfer.getData('text/plain')
-      const dragObj = document.getElementById(dragObjId)        
-      const left = clientX - disx
-      const top = clientY - disy
+      const dragObjId = event.dataTransfer.getData("text/plain");
+      const dragObj = document.getElementById(dragObjId);
+      const left = clientX - disx;
+      const top = clientY - disy;
 
       // 取到合法的位置信息，包括left，top，currentLef，currentTop，page
-      const legalPos = getLegalityPos(left, top, pageWidth, pageHeight, dragableBoxWidth, dragableBoxHeight, pageGap)
+      const legalPos = getLegalityPos(
+        left,
+        top,
+        pageWidth,
+        pageHeight,
+        dragableBoxWidth,
+        dragableBoxHeight,
+        pageGap
+      );
 
       // 相对整个文档列表左上角坐标
-      dragObj.style.left = legalPos.left  + "px";
-      dragObj.style.top = legalPos.top  + "px";
+      dragObj.style.left = legalPos.left + "px";
+      dragObj.style.top = legalPos.top + "px";
       // console.log('currentPageLeft, currentPageTop', legalPos.currentPageLeft, legalPos.currentPageTop)
-      dragObj.innerText = `拖动到第${legalPos.page}页了`
-      
+
+      // if(enterTarget.size>1){
+      //   for (const item of enterTarget) {
+      //     if(enterTarget.size>1){
+      //       item.style.backgroundColor="";
+      //       enterTarget.delete(item)
+      //     }
+      //   }
+      // }
+      // console.log(enterTarget.size, 'enterTarget size')
+      const { page: currentPage } = legalPos;
+      dragObj.innerText = `拖动到第${currentPage}页了`;
+
       // 只有跨页了并且拿到了dropzone元素，才需要移动拖动框
-      if (lastPage !== legalPos.page && target.className == "dropzone") {  
-        // lastEnterTarget && (lastEnterTarget.style.backgroundColor = "");
-        dragObj.parentNode.removeChild(dragObj);
-        target.appendChild(dragObj);
-        lastPage = legalPos.page
+      if (lastPage !== currentPage) {
+        if (target.className == "dropzone") {
+          dragObj.parentNode.removeChild(dragObj);
+          target.appendChild(dragObj);
+        }
+
+        pageContent.children[lastPage - 1].style.backgroundColor = "";
+        pageContent.children[currentPage - 1].style.backgroundColor = "#b6e0c5";
+        lastPage = currentPage;
       }
       // console.log('drop')
     },

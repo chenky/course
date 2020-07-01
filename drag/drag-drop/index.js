@@ -37,8 +37,6 @@
   const pageGap = 20;
   // 默认在第一页
   let lastPage = 1;
-  // over元素数组
-  let enterTarget = new Set();
   let disx = 0;
   let disy = 0;
 
@@ -127,10 +125,6 @@
     function (event) {
       // 阻止默认动作以启用drop
       event.preventDefault();
-      // if (event.target.className == "dropzone") {
-      //   event.target.style.backgroundColor = "#b6e0c5";
-      //   enterTarget.add(event.target)
-      // }
     },
     false
   );
@@ -140,9 +134,7 @@
     function (event) {
       // 当可拖动的元素进入可放置的目标时高亮目标节点
       if (event.target.className == "dropzone") {
-        // console.log('dragenter')
         event.target.style.backgroundColor = "#b6e0c5";
-        // enterTarget.add(event.target)
       }
     },
     false
@@ -152,10 +144,7 @@
     "dragleave",
     function (event) {
       // 当拖动元素离开可放置目标节点，重置其背景
-      // console.log(event.target,'drag leave')
       if (event.target.className == "dropzone") {
-        // console.log('dragleave')
-        // console.log('drag leave clear background')
         event.target.style.backgroundColor = "";
       }
     },
@@ -194,15 +183,6 @@
       dragObj.style.top = legalPos.top + "px";
       // console.log('currentPageLeft, currentPageTop', legalPos.currentPageLeft, legalPos.currentPageTop)
 
-      // if(enterTarget.size>1){
-      //   for (const item of enterTarget) {
-      //     if(enterTarget.size>1){
-      //       item.style.backgroundColor="";
-      //       enterTarget.delete(item)
-      //     }
-      //   }
-      // }
-      // console.log(enterTarget.size, 'enterTarget size')
       const { page: currentPage } = legalPos;
       dragObj.innerText = `拖动到第${currentPage}页了`;
 

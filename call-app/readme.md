@@ -1,0 +1,4 @@
+- [唤醒app call app 类库](https://github.com/suanmei/callapp-lib)
+- [H5唤起APP指南](https://suanmei.github.io/2018/08/23/h5_call_app/)
+- [腾讯应用宝微下载](https://wiki.open.qq.com/index.php?title=mobile/%E5%BA%94%E7%94%A8%E5%AE%9D%E5%BE%AE%E4%B8%8B%E8%BD%BD)
+- [微信内网页跳转APP功能](https://developers.weixin.qq.com/doc/oplatform/Mobile_App/WeChat_H5_Launch_APP.html)

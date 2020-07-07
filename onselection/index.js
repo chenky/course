@@ -13,7 +13,7 @@
 
    let elem = document.getElementById('test_select');
    let txt = document.getElementById('txt');
-   let btn = document.getElementById("get_selection");
+   let buttonPanel = document.getElementById("button-panel");
 
   // 初始化生成所有模块数据
   // arr: [{start:3, end: 5}, {start: 7, end: 10},...]
@@ -23,7 +23,7 @@
     // 上一个截取字符串的结束位置
     let lastEnd = 0;
     arr.forEach(element => {
-      const { start, end } = element
+      const { start, end, bgColor } = element
       const tagTxt = elemTxt.slice(start, end)
       // 截取标注前的字符串
       let prevTxt = '';
@@ -33,7 +33,7 @@
         prevTxt = elemTxt.slice(lastEnd, start)
       }
       lastEnd = end
-      html+= prevTxt + `<span class="selection_tag" data-offset-start="${start}" data-offset-end="${end}">${tagTxt}<i>X</i></span>`
+      html+= prevTxt + `<span class="selection_tag" data-offset-start="${start}" style="background-color: ${bgColor}" data-offset-end="${end}">${tagTxt}<i>X</i></span>`
     });
     // 截取结尾的字符串
     const endTxt = elemTxt.slice(lastEnd);
@@ -41,7 +41,7 @@
     selectionArea.innerHTML = html
   }
 
-  init([{start:3, end: 5}, {start: 15, end: 20}], elem)
+  init([{start:3, end: 5, bgColor: '#a1cdf9'}, {start: 15, end: 20, bgColor: '#dab1da'}], elem)
 
    // 删除已经标注的内容
    elem.onclick = function(event){      
@@ -64,7 +64,12 @@
    }
 
    // 标注内容
-   btn.onclick = function(){   
+   buttonPanel.onclick = function(e){
+    const { target } = e
+    const {className} = target
+    if (!(className && className.split(' ').indexOf('button_el') !== -1)) {
+      return
+    }
      let selection = window.getSelection() || document.getSelection();
      // 如果没有选择任何内容则直接返回
      if(selection.rangeCount<1){
@@ -106,10 +111,13 @@
 
          console.log(start, end);          
 
+         const bgColor = target.dataset.bgColor
          let newElem = document.createElement('span');
          newElem.className = 'selection_tag';    
          newElem.dataset.offsetStart = start;
-         newElem.dataset.offsetEnd = end; 
+         newElem.dataset.offsetEnd = end;
+         newElem.dataset.bgColor = bgColor
+         newElem.style.backgroundColor =  bgColor
          range.surroundContents(newElem)
          let closeElem = document.createElement('i');  
          closeElem.innerText = 'X'        

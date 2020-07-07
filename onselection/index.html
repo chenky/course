@@ -34,6 +34,32 @@
       right: 2px;
       cursor: pointer;
     }
+    #button-panel{
+      margin-top: 30px;
+    }
+    .button_el{
+      display: inline-block;
+      line-height: 1;
+      white-space: nowrap;
+      cursor: pointer;
+      background: #fff;
+      border: 1px solid #dcdfe6;
+      border-color: #dcdfe6;
+      color: #606266;
+      -webkit-appearance: none;
+      text-align: center;
+      box-sizing: border-box;
+      outline: none;
+      margin: 0;
+      transition: .1s;
+      font-weight: 500;
+      -moz-user-select: none;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+      padding: 12px 20px;
+      font-size: 14px;
+      border-radius: 4px;
+    }
   </style>
 </head>
 
@@ -41,7 +67,10 @@
   <div id='test_select' class="selection_area">
     Vue 也允许注册自定义指令。注意，在 Vue2.0 中，代码复用和抽象的主要形式是组件。然而，有的情况下，你仍然需要对普通 DOM 元素进行底层操作，这时候就会用到自定义指令。</span>
   </div>
-  <button id="get_selection">get selection</button>
+  <div id="button-panel">
+    <button class="button_el" data-bg-color="#67c23a" style="background-color: #67c23a;">button1</button>
+    <button class="button_el" data-bg-color="#e6a23c" style="background-color: #e6a23c;">button2</button>
+  </div>
   <script src="index.js"></script>
 </body>
 

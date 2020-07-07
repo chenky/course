@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>load more page</title>
+  <style>
+    html, body{
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    .wrap{
+      width: 300px;
+      height: 300px;
+      overflow-y: auto;
+      margin: auto;
+    }
+    ul,li{
+      margin:0;
+      padding: 0;
+      list-style: none;
+    }    
+    .content{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      background-color: blueviolet;
+    }
+    .item{
+      margin: 10px;
+      border: 1px solid #7f6d90;
+    }
+    .load-more{
+      width: 100%;
+      height: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="wrap" class="wrap">
+    <ul id="content" class="content">      
+    </ul>
+    <div id="load-more" class="load-more">加载中...</div>
+  </div>
+  <script>
+
+    const wrap = document.querySelector("#wrap")
+    const content = document.querySelector("#content")
+    const loadMore = document.querySelector("#load-more")
+    let currentItemCount = 0
+    const limit = 30
+
+
+    function loadMoreItem(){
+      if(currentItemCount>limit){
+        // 停止观察，提示跳转到列表页
+        // 停止观察
+        // io.unobserve(loadMore);
+        // 关闭观察器
+        io.disconnect();
+        loadMore.innerHTML = `<a href='#'>查看完整列表，将跳转到列表页</a>`
+        return
+      }
+      let html = '';
+      for (let index = 0; index < 10; index++) {
+        html += `<li class="item">test_${currentItemCount}_${index}</li>`        
+      }
+      // 批量添加dom节点
+      content.innerHTML += html
+      currentItemCount += 10
+    }
+
+    const io = new IntersectionObserver(function(entries){
+      if(entries[0].intersectionRatio>0){
+        console.log('intersectionRatio>0, will loadmore')
+        loadMoreItem()
+      }
+    }, {
+      root: wrap,
+      // threshold: 0.1
+    })
+
+    io.observe(loadMore)
+  </script>
+</body>
+</html>

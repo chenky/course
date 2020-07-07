@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // let target = {
+        //     name: "target"
+        // };
+
+        // let proxy = new Proxy(target, {
+        //     set(trapTarget, key, value, receiver) {
+
+        //         // ignore existing properties so as not to affect them
+        //         if (!trapTarget.hasOwnProperty(key)) {
+        //             if (isNaN(value)) {
+        //                 throw new TypeError("Property must be a number.");
+        //             }
+        //         }
+
+        //         // add the property
+        //         return Reflect.set(trapTarget, "pre_"+key, (value+1), receiver);
+        //     }
+        // });
+
+        // // adding a new property
+        // proxy.count = 2;
+        // // target.count = 2;
+        // console.log(proxy.count); // 1
+        // console.log(target.count); // 1
+        // console.log(proxy.pre_count); // 1
+        // console.log(target.pre_count); // 1
+
+        // you can assign to name because it exists on target already
+        // proxy.name = "proxy";
+        // console.log(proxy.name); // "proxy"
+        // console.log(target.name); // "proxy"
+
+        // // throws an error
+        // proxy.anotherName = "proxy";
+        // target.anotherName = "proxy";
+        // console.log(target.anotherName);
+        // console.log(proxy.anotherName);
+
+
+//         function sum(...values) {
+//     return values.reduce((previous, current) => previous + current, 0);
+// }
+
+// let sumProxy = new Proxy(sum, {
+//         apply: function(trapTarget, thisArg, argumentList) {
+
+//             argumentList.forEach((arg) => {
+//                 if (typeof arg !== "number") {
+//                     throw new TypeError("All arguments must be numbers.");
+//                 }
+//             });
+
+//             return Reflect.apply(trapTarget, thisArg, argumentList);
+//         },
+//         construct: function(trapTarget, argumentList) {
+//             throw new TypeError("This function can't be called with new.");
+//         }
+//     });
+
+// console.log(sumProxy(1, 2, 3, 4));          // 10
+
+
+// console.log(sum(1, "2", 3, 4));
+// throws error
+// console.log(sumProxy(1, "2", 3, 4));
+
+// also throws error
+// let result = new sumProxy();
+        
+// class AbstractNumbers {
+
+// constructor(...values) {
+//     console.log(new.target);
+    
+//     if (new.target === AbstractNumbers) {
+//         throw new TypeError("This function must be inherited from.");
+//     }
+
+//     this.values = values;
+// }
+// }
+
+// let AbstractNumbersProxy = new Proxy(AbstractNumbers, {
+//     construct: function(trapTarget, argumentList) {
+//         return Reflect.construct(trapTarget, argumentList, function test() {});
+//     }
+// });
+
+
+// let instance = new AbstractNumbersProxy(1, 2, 3, 4);
+// console.log(instance.values);               // [1,2,3,4]
+
+
+// class Person {
+//     constructor(name) {
+//         this.name = name;
+//     }
+// }
+
+// let PersonProxy = new Proxy(Person, {
+//         apply: function(trapTarget, thisArg, argumentList) {
+//             return new trapTarget(...argumentList);
+//         }
+//     });
+
+
+// let me = PersonProxy("Nicholas");
+// console.log(me.name);                   // "Nicholas"
+// console.log(me instanceof Person);      // true
+// console.log(me instanceof PersonProxy); // true
+
+// let target = {
+//     name: "target"
+// };
+
+// let { proxy, revoke } = Proxy.revocable(target, {});
+
+// console.log(proxy.name);        // "target"
+
+// revoke();
+
+// // throws error
+// // console.log(proxy.name);
+// console.log(typeof proxy);
+
+
+// function NoSuchProperty() {
+//     // empty
+// }
+
+// NoSuchProperty.prototype = new Proxy({}, {
+//     get(trapTarget, key, receiver) {
+//         throw new ReferenceError(`${key} doesn't exist`);
+//     }
+// });
+
+// class Square extends NoSuchProperty {
+//     constructor(length, width) {
+//         super();
+//         this.length = length;
+//         this.width = width;
+//     }
+
+//     getArea() {
+//         return this.length * this.width;
+//     }
+// }
+
+// let shape = new Square(2, 6);
+
+// let area1 = shape.length * shape.width;
+// console.log(area1);                         // 12
+
+// let area2 = shape.getArea();
+// console.log(area2);                         // 12
+
+// // throws an error because "wdth" doesn't exist
+// let area3 = shape.length * shape.wdth;
+
+
+    // let proxyObj = new Proxy({},{
+    //     get(trapTarget, key, receiver){
+    //         throw new ReferenceError(`${key} doesn't exist`);
+    //     }
+    // });
+
+    // proxyObj.name;
+    // console.log("test");
+
+//     const target = {
+//     get foo() {
+//         return this.bar;
+//     },
+//     bar: 3
+// };
+// const handler = {
+//     get(target, propertyKey, receiver) {
+//         if (propertyKey === 'bar') return 2;
+//         console.log('Reflect.get ', Reflect.get(target, propertyKey, receiver)); // this in foo getter references Proxy instance; logs 2
+//         console.log('target[propertyKey] ', target[propertyKey]); // this in foo getter references "target" - logs 3
+//     }
+// };
+// const obj = new Proxy(target, handler);
+// console.log(obj.bar);
+// // 2
+// obj.foo;
+    
+    // function test({a=1,b=2,c=3}={}){
+    //     let extendObj = {a,b,c};
+    //     console.log(extendObj);        
+    // }
+    // test();
+    // test({a:11});
+
+    </script>
+</body>
+
+</html>

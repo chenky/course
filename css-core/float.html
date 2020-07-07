@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>float</title>
+	<style>
+		
+		 .clearfix:after{display: table;  content: " "; clear: both;}
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		ol,li{
+			list-style: none;			
+		}
+		.nav { padding: 20px; background-color: blue; }
+		.nav-item{
+			float: left;
+			margin-left: 10px;
+			background-color: red;
+		}
+		.main{  margin-top: 50px; background-color: blue; padding: 20px; }
+		.product{ float: left; width: 150px; }
+
+	</style>
+</head>
+<body>
+  <!-- Float: left|right|none
+Left:向左浮动（脱离文档流）
+Right：向右浮动（脱离文档流）
+None：不浮动
+
+1.用完清理保持布局整洁2. 子元素浮动父元素清理
+3.清理浮动：
+Meiui已经提供了clearfix类 
+或者.clearfix:after{display: table;  content: " "; clear: both;} -->
+
+  <!-- 引用：http://luopq.com/2015/11/08/CSS-float/ -->
+
+	<div class="wrapper">
+
+				<ol class="nav">
+					<li class="nav-item">index</li>
+					<li class="nav-item">news</li>
+					<li class="nav-item">about</li>
+				</ol>
+
+				<div class="main">
+					<img title="美的豆浆机" src="http://pic.mdcdn.cn/h5/pic/201710/eb70efaae853.png@100Q.png" alt="美的豆浆机" class="product">
+					<p class="introduce">美好的一天从美的豆浆机开始,美好的一天从美的豆浆机开始,美好的一天从美的豆浆机开始,美好的一天从美的豆浆机开始,美好的一天从美的豆浆机开始,</p>
+				</div>
+				<p class="introduce">我被影响了，我被影响了，我呗影响了</p>
+
+
+	</div>
+</body>
+</html>

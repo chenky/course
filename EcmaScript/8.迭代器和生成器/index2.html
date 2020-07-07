@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+            // 集合对象迭代器 entries, values, keys
+        let colors = ["red", "green", "blue"];
+        let tracking = new Set([1234, 5678, 9012]);
+        let data = new Map();
+        data.set("title", "Understanding ECMAScript 6");
+        data.set("format", "ebook");
+        // entries(),keys(),values();
+        // entries() 返回实体迭代器，键值对对象, 如果直接遍历colors会调用默认迭代器和下面的例子等效
+        // for (let entry of colors.entries()) {
+        //     console.log(entry);
+        // }
+        // for (let entry of tracking.entries()) {
+        //     console.log(entry);
+        // }
+        // for (let entry of data.entries()) {
+        //     console.log(entry);
+        // }
+        // for (let [key, value] of data.entries()) {
+        //     console.log(key+"="+value);
+        // }
+        // for (let entry of colors) {
+        //     console.log(entry);
+        // }
+        // for (let entry of tracking) {
+        //     console.log(entry);
+        // }
+        // for (let entry of data) {
+        //     console.log(entry);
+        // }
+        // values() 返回集合中所有值迭代器
+        // for (let value of colors.values()) {
+        //     console.log(value);
+        // }
+        // // 如果直接遍历colors会调用默认迭代器和下面的例子等效
+        // for (let value of tracking.values()) {
+        //     console.log(value);
+        // }
+        // for (let value of data.values()) {
+        //     console.log(value);
+        // }
+        // keys() 返回集合中所有健迭代器
+        // for (let key of colors.keys()) {
+        //     console.log(key);
+        // }
+        // // 如果直接遍历colors会调用默认迭代器和下面的例子等效
+        // for (let key of tracking.keys()) {
+        //     console.log(key);
+        // }
+        // for (let key of data.keys()) {
+        //     console.log(key);
+        // }
+
+        // 字符串迭代器, ES6中双字节字符也可正确输出来
+        var message = "A 𠮷 B";
+        for (let c of message) {
+            console.log(c);
+        }
+    </script>
+</body>
+</html>

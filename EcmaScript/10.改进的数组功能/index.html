@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // let arr = [2,4,4];
+        // let items = new Array(2);
+        // console.log(items.length); // 2
+        // console.log(items[0]); // undefined
+        // console.log(items[1]); // undefined
+
+        // items = new Array("2");
+        // console.log(items.length); // 1
+        // console.log(items[0]); // "2"
+
+        // items = new Array(1, 2);
+        // console.log(items.length); // 2
+        // console.log(items[0]); // 1
+        // console.log(items[1]); // 2
+
+        // items = new Array(3, "2");
+        // console.log(items.length); // 2
+        // console.log(items[0]); // 3
+        // console.log(items[1]); // "2"
+
+
+        // Array.of
+        // let items = Array.of(1, 2);
+        // console.log(items.length); // 2
+        // console.log(items[0]); // 1
+        // console.log(items[1]); // 2
+
+        // items = Array.of(2);
+        // console.log(items.length); // 1
+        // console.log(items[0]); // 2
+
+        // items = Array.of("2");
+        // console.log(items.length); // 1
+        // console.log(items[0]); // "2"
+
+
+
+
+
+        // // 类数组转换为数组
+        // function makeArray(arrayLike) {
+        //     var result = [];
+
+        //     for (var i = 0, len = arrayLike.length; i < len; i++) {
+        //         result.push(arrayLike[i]);
+        //     }
+
+        //     return result;
+        // }
+
+        // function makeArray(arrayLike) {
+        //     return Array.prototype.slice.call(arrayLike);
+        // }
+
+        // // Array.from转换成数组
+        // function doSomething() {
+        //     var args = Array.from(arguments);
+
+        //     // use args
+        // }
+
+        // let helper = {
+        //     diff: 1,
+
+        //     add(value) {
+        //         return value + this.diff;
+        //     }
+        // };
+
+        // function translate() {
+        //     return Array.from(arguments, helper.add, helper);
+        // }
+
+        // let numbers = translate(1, 2, 3);
+
+        // console.log(numbers); // 2,3,4
+
+
+        let numbers = {
+            *[Symbol.iterator]() {
+                yield 1;
+                yield 2;
+                yield 3;
+            }
+        };
+
+        let numbers2 = Array.from(numbers, (value) => value + 1);
+
+        console.log(numbers2); // 2,3,4
+    </script>
+</body>
+
+</html>

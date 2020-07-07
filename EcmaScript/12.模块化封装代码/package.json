@@ -1,0 +1,21 @@
+{
+  "name": "moduletest",
+  "version": "1.0.0",
+  "description": "module test demo",
+  "dependencies": {
+    "webpack-cli": "^3.1.2",
+    "webpack": "^4.26.0"
+  },
+  "devDependencies": {
+    "clean-webpack-plugin": "^1.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "object-assign": "^4.1.1",
+    "webpack-dev-server": "^3.1.10"
+  },
+  "scripts": {
+    "dev": "webpack --config webpack.dev.config.js",
+    "start": "webpack-dev-server --open"
+  },
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Symbol</title>
+</head>
+
+<body>
+    <script>
+        // es6之前有String, Number, Boolean, null, undefined, Object, es6新增了Symbol类型
+        // Symbol是原始类型，通过全局的Symbol函数声明        
+        // let firstName = Symbol("test");
+        // console.log(firstName);
+        
+        // let newSymbol = new Symbol("newSymbol"); // Symbol是原始值
+
+
+        // 可计算属性都可以使用Symbol
+        // let firstName = Symbol("test"); 
+        // let person = {};
+        // person[firstName] = "Nicholas";
+        // console.log(person[firstName]);
+
+
+        // Symbol的辨别
+        // let firstName = Symbol("test");
+        // console.log(typeof firstName);
+
+
+
+        // 比较
+        // let one = 1;
+        // let oneCopy = 1;
+        // one === oneCopy; //true;
+
+        // let first = Symbol();
+        // let second = Symbol();
+        // console.log(first === second);
+        // 需要共享怎么办？
+        
+        
+
+
+        // Symbol共享体系，Symbol注册表检索，有返回，无创建
+        // let uid = Symbol.for("uid");
+        // console.log(uid); // "Symbol(uid)"
+        // let uid2 = Symbol.for("uid");
+        // console.log(uid === uid2);
+
+
+        // 通过keyFor获取键值
+        // let testId = Symbol.for("uid");
+        // console.log(Symbol.keyFor(testId));
+
+
+        
+
+    </script>
+</body>
+
+</html>

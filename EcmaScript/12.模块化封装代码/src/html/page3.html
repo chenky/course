@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script type="module" src="module.js"></script>
+
+    
+    <script type="module">
+        import { sum } from "./example.js";
+        // 不会被添加到全局变量中
+        let result = sum(1, 2);
+    </script>
+
+    <script type="module" src="module2.js"></script>
+
+    <!-- 默认会加上defer的，保障顺序执行 -->
+    加载顺序如下：
+    1. 下载并解析module1
+    2. 递归下载并解析module中导入的资源
+    3. 解析内联模块
+    4. 下载并解析内联模块中导入的资源
+    5. 下载并解析module2
+    6. 递归下载并解析module2中导入的资源
+
+    执行顺序如下：
+    1. 递归执行module1中导入的资源
+    2. 执行module1
+    3. 递归执行内联模块中导入的资源
+    4. 执行内联模块
+    5. 递归执行module2中导入的资源
+    6. 执行module2
+
+    <!-- 不能保障谁先执行 -->
+    <script type="module" async src="module1.js"></script>
+    <script type="module" async src="module2.js"></script>
+</body>
+</html>

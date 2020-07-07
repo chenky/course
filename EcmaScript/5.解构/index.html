@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 传统赋值，同质化代码多
+        // let options = {
+        //     repeat: true,
+        //     save: false
+        // };
+        // let repeat = options.repeat,
+        //     save = options.save;
+
+
+        // 对象解构，总是能够根据数据结构把正确的值付给正确的对象，必须初始化
+        // let node = {
+        //     type: "Identifier",
+        //     name: "foo"
+        // };
+        // let {
+        //     name,
+        //     type
+        //     // ,name
+        // } = node;
+        // console.log(type);
+        // console.log(name);
+        
+        
+        // let {
+        //     type,
+        //     name
+        // } = undefined;
+
+        // 属性不存在，及如何赋值默认值
+        // let node = {
+        //     type: "Identifier",
+        //     name: "foo"
+        // };
+        // let {
+        //     type,
+        //     // name,
+        //     name = "test",
+        //     // value
+        //     value = true
+        // } = node;
+        // console.log(type); 
+        // console.log(name); 
+        // console.log(value); 
+
+        // 非同名局部变量赋值
+        // let node = {
+        //     type: "Identifier"
+        //     , name: "foo"
+        // };
+        // let {
+        //     type: localType,
+        //     name: localName = "bar"
+        // } = node;
+        // console.log(localType); 
+        // console.log(localName);
+
+        // 嵌套对象解构
+        // let node = {
+        //     type: "Identifier",
+        //     name: "foo",
+        //     loc: {
+        //         start: {
+        //             line: 1,
+        //             column: 1
+        //         },
+        //         end: {
+        //             line: 1,
+        //             column: 4
+        //         }
+        //     }
+        // };
+        // let {
+        //     loc: {
+        //         // start
+        //         start: localStart
+        //     }
+        // } = node;
+        // // console.log(start.line); 
+        // // console.log(start.column); 
+        // console.log(localStart.line); 
+        // console.log(localStart.column); 
+
+        // 数组解构
+        // let colors = ["red", "green"];
+        // let [firstColor, secondColor, thirdColor="blue"] = colors;
+        // console.log(firstColor);
+        // console.log(secondColor);
+        // console.log(thirdColor);
+
+
+        // let colors = ["red", "green", "blue"];
+        // let [, , thirdColor] = colors;
+        // console.log(thirdColor);
+
+        // 赋值解构
+        // let a = 1,
+        //     b = 2,
+        //     tmp;
+
+        // tmp = a;
+        // a = b;
+        // b = tmp;
+
+        // let a = 1,
+        //     b = 2;
+        // [a, b] = [b, a];
+        // console.log(a); 
+        // console.log(b); 
+
+        // 嵌套数组解构
+        // let colors = ["red", ["green", "lightgreen"], "blue"];
+        // let [firstColor, [secondColor]] = colors;
+        // console.log(firstColor); 
+        // console.log(secondColor);
+
+        
+    </script>
+</body>
+
+</html>

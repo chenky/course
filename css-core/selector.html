@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>css选择器</title>
+	<style>
+		*{
+			color: purple;
+		}
+		label{
+			color: red;
+			color: red !important;
+		}
+		.test{
+			color: green;
+		}
+		#test{
+			color: blue;
+		}
+		.wrapper .demo2-test1{ color: green; }
+		.demo2-test2{ color: red; }
+		.demo2-test1{ color: black; }		
+	</style>
+</head>
+<body>
+  <!-- 选择器优先级: !important>style>id>class>Element>通配符 -->
+
+  <!-- reference: https://developer.mozilla.org/zh-CN/docs/Web/CSS/Specificity
+ http://www.cnblogs.com/aaronjs/p/3156809.html -->
+
+	<div class="wrapper">
+
+		<h2>demo1:</h2>
+		<form>
+			<div class="form-group">
+				<label for="exampleInputEmail1" class="test" id="test" style="color: black;">Email address</label>
+				<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+			</div>
+			<!-- <div class="form-group">
+				<label for="exampleInputPassword1" class="test" id="test">Password</label>
+				<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+			</div> -->
+			<button type="submit" class="btn btn-default">Submit</button>
+		</form>
+
+		<h2>demo2:</h2>
+		<p class="demo2-test1 demo2-test2">demo2 test</p>
+	</div>
+</body>
+</html>

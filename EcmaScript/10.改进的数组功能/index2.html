@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // ES5中查找数组中元素
+        // var arr = [1, 2, 3, 45, 8];
+        // console.log(arr.indexOf(2));
+        // console.log(arr.lastIndexOf(3));
+
+        // // 请问如果我要查找第一个偶数怎么办
+        // let numbers = [25, 30, 35, 40, 45];
+        // // 回调函数（元素，索引，数组），可选参数指定回调函数的this
+        // console.log(numbers.find(n => n > 33)); // 35
+        // console.log(numbers.findIndex(n => n > 33)); // 2
+
+
+
+        // // fill方法
+        // let numbers = [1, 2, 3, 4];
+        // numbers.fill(1);
+        // console.log(numbers.toString()); // 1,1,1,1
+
+// <!-- 
+//         let numbers = [1, 2, 3, 4, 5, 6, 7];
+//         // numbers.fill(1, 2);
+//         // console.log(numbers.toString()); 
+//         // numbers.fill(0, 1, 5);
+//         // 负数length+当前负数
+//         numbers.fill(0, -6, 5);
+//         console.log(numbers.toString());  -->
+
+
+
+
+        // copyWithin()方法
+        // let numbers = [1, 2, 3, 4, 5, 6];
+
+        // // 索引2开始填充
+        // // 索引0开始复制
+        // // numbers.copyWithin(2, 0);
+        // // console.log(numbers.toString());    
+
+        // numbers.copyWithin(2, 0, 3);
+        // console.log(numbers.toString());
+
+        // 这两个方法在定型数组中使用比较多，定型数组：数组中元素都是数值，为高性能的算术运算提供保障，在canvas，webgl中用的较多
+    </script>
+</body>
+
+</html>

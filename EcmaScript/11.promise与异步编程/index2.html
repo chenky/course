@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // promise构造函数中抛出异常
+        // let promise = new Promise(function (resolve, reject) {
+        //     throw new Error("Explosion!");
+        // });
+        // promise.catch(function (error) {
+        //     console.log(error.message); // "Explosion!"
+        // });
+        // promise.then(null, function(err){
+        //     console.log(err.message);            
+        // });
+
+        // 等价于
+        // let promise = new Promise(function (resolve, reject) {
+        //     try {
+        //         throw new Error("Explosion!");
+        //     } catch (ex) {
+        //         reject(ex);
+        //     }
+        // });
+        // // promise.catch(function (error) {
+        // //     console.log(error.message); // "Explosion!"
+        // // }); 
+        // promise.then(null, function(err){
+        //     console.log(err.message);            
+        // });
+
+        // 串联promise
+        // let p1 = new Promise(function (resolve, reject) {
+        //     resolve(42);
+        // });
+        // p1.then(function (value) {
+        //     console.log(value);
+        // }).then(function () {
+        //     console.log("Finished");
+        // }).then(function(){
+        //     console.log("finished too");
+            
+        // });
+
+        // // 等价于
+        // let p1 = new Promise(function (resolve, reject) {
+        //     resolve(42);
+        // });
+        // let p2 = p1.then(function (value) {
+        //     console.log(value);
+        // });
+        // p2.then(function () {
+        //     console.log("Finished");
+        // });
+
+        // let p1 = new Promise(function (resolve, reject) {
+        //     resolve(42);
+        // });
+        // p1.then(function (value) {
+        //     throw new Error("Boom!");
+        // }).then(null, function(err){
+        //     console.log(err.message);
+            
+        // })
+        // .catch(function (error) {
+        //     console.log(error.message); // "Boom!"
+        // });
+        let p1 = new Promise(function (resolve, reject) {
+            throw new Error("P1 error");
+        });
+        p1.then(function(){}, function(error){
+            console.log(error.message); 
+            throw new Error("Boom!");
+        }).catch(function (error) {
+        // 建议在所有promise后面都加一个catch处理异常
+            console.log(error.message); // "Boom!"
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // 全局的拒绝处理程序, 非标准不讲
+        // let rejected;
+        // window.onunhandledrejection = function (event) {
+        //     console.log(event.type); // "unhandledrejection"
+        //     console.log(event.reason.message); // "Explosion!"
+        //     console.log(rejected === event.promise); // true
+        // };
+        // window.onrejectionhandled = function (event) {
+        //     console.log("on rejection handled fired");
+
+        //     console.log(event.type); // "rejectionhandled"
+        //     console.log(event.reason.message); // "Explosion!"
+        //     console.log(rejected === event.promise); // true
+        // };
+        // rejected = Promise.reject(new Error("Explosion!"));  
+        // rejected.catch(function(err){
+        //     console.log(err.message);            
+        // }); 
+
+        // let p1 = new Promise(function (resolve, reject) {
+        //     throw new Error("P1 error");
+        // });
+        // let p2 = new Promise(function (resolve, reject) {
+        //     // throw new Error("P2 error");
+        //     resolve(2);
+        // });
+        // let p3 = new Promise(function (resolve, reject) {
+        //     throw new Error("P3 error");
+        //     // resolve("p3 successful");
+        // });
+        // p1.then(function (value) {
+        //     console.log("p1 then value" + value);
+        //     return p2;
+        // },function(err){
+        //     console.log(err.message+" in p1 reject method");
+        // }).then(function (value) {
+        //     console.log("p2 then value " + value);
+        //     return p3;
+        // }).then(function (value) {
+        //     console.log("p3 then value" + value);
+        // }).catch(function (err) {
+        //     console.log(err.message+" in final catch method");
+        // }).catch(function(err){
+        //     console.log(err.message+" in final catch method2");
+        // });
+    </script>
+</body>
+
+</html>

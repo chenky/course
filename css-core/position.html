@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>position定位</title>
+    <style>
+    .box {
+        display: inline-block;
+        width: 100px;
+        height: 100px;
+        background: red;
+        color: white;
+    }
+
+    #two {
+        position: relative;
+        top: 10px;
+        left: 20px;
+        background: blue;
+    }
+
+    #six {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        background: blue;
+    }
+
+    #eight {
+        position: fixed;
+        top: 470px;
+        left: 10px;
+        background: blue;
+    }
+
+    .outer {
+        width: 500px;
+        height: 300px;
+        overflow: scroll;
+    }
+
+    .seperator {
+        height: 50px;
+    }
+    .pannel{
+    	position: relative;
+    }
+    </style>
+</head>
+
+<body>
+  <!-- Position: static|relative|absolute|fixed
+Static:默认值，文档流中
+Relative: 相对自己的偏移，文档流中
+Absolute:相对第一个已定位的祖先元素定位，脱离文档流
+Fixed：相对于视窗定位，脱离文档流 -->
+
+  <!-- reference: http://zh.learnlayout.com/position.html
+https://developer.mozilla.org/en-US/docs/Web/CSS/position -->
+
+    <div class="wrapper" id="wrapper">
+        <div class="box">One</div>
+        <div class="box">Two</div>
+        <div class="box">Three</div>
+        <div class="box">Four</div>
+        <div class="seperator"></div>
+        <div class="box" id="one">One</div>
+        <div class="box" id="two">Two</div>
+        <div class="box" id="three">Three</div>
+        <div class="box" id="four">Four</div>
+        <div class="seperator"></div>
+        <div class="pannel">
+            <div class="box" id="five">One</div>
+            <div class="box" id="six">Two</div>
+            <div class="box" id="seven">Three</div>
+        </div>
+        <div class="outer">
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam congue tortor eget pulvinar lobortis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nam ac dolor augue. Pellentesque mi mi, laoreet et dolor sit amet, ultrices varius risus. Nam vitae iaculis elit. Aliquam mollis interdum libero. Sed sodales placerat egestas. Vestibulum ut arcu aliquam purus viverra dictum vel sit amet mi. Duis nisl mauris, aliquam sit amet luctus eget, dapibus in enim. Sed velit augue, pretium a sem aliquam, congue porttitor tortor. Sed tempor nisl a lorem consequat, id maximus erat aliquet. Sed sagittis porta libero sed condimentum. Aliquam finibus lectus nec ante congue rutrum. Curabitur quam quam, accumsan id ultrices ultrices, tempor et tellus.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam congue tortor eget pulvinar lobortis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nam ac dolor augue. Pellentesque mi mi, laoreet et dolor sit amet, ultrices varius risus. Nam vitae iaculis elit. Aliquam mollis interdum libero. Sed sodales placerat egestas. Vestibulum ut arcu aliquam purus viverra dictum vel sit amet mi. Duis nisl mauris, aliquam sit amet luctus eget, dapibus in enim. Sed velit augue, pretium a sem aliquam, congue porttitor tortor. Sed tempor nisl a lorem consequat, id maximus erat aliquet. Sed sagittis porta libero sed condimentum. Aliquam finibus lectus nec ante congue rutrum. Curabitur quam quam, accumsan id ultrices ultrices, tempor et tellus.
+            </p>
+            <div class="box" id="eight">four</div>
+        </div>
+    </div>
+</body>
+
+</html>

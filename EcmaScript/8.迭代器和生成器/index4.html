@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 生成器返回语句
+        // function* createIterator() {
+        //     yield 1;
+        //     // return;
+        //     return "return flag";
+        //     yield 2;
+        //     yield 3;
+        // }
+        // let iterator = createIterator();
+        // console.log(iterator.next()); // "{ value: 1, done: false }"
+        // console.log(iterator.next()); // "{ value: undefined, done: true }"
+        // console.log(iterator.next());
+
+        // 委托生成器
+        // function* createNumberIterator() {
+        //     yield 1;
+        //     yield 2;
+        //     return 3;
+        // }
+        // function* createRepeatingIterator(count) {
+        //     for (let i = 0; i < count; i++) {
+        //         yield "repeat";
+        //     }
+        // }
+        // function* createCombinedIterator() {
+        //     let result = yield* createNumberIterator();
+        //     // yield result;
+        //     yield* createRepeatingIterator(result);
+        // }
+        // var iterator = createCombinedIterator();
+        // console.log(iterator.next()); // "{ value: 1, done: false }"
+        // console.log(iterator.next()); // "{ value: 2, done: false }"
+        // console.log(iterator.next()); // "{ value: 3, done: false }"
+        // console.log(iterator.next()); // "{ value: "repeat", done: false }"
+        // console.log(iterator.next()); // "{ value: "repeat", done: false }"
+        // console.log(iterator.next()); // "{ value: "repeat", done: false }"
+        // console.log(iterator.next()); // "{ value: undefined, done: true }"
+
+        // yield可以直接用于字符串
+        // function* strIterator(){
+        //     yield *"hello";
+        // }
+        // let strIter = strIterator();
+        // console.log(strIter.next());
+        // console.log(strIter.next());
+        // console.log(strIter.next());
+        // console.log(strIter.next());
+        // console.log(strIter.next());
+        // console.log(strIter.next());
+
+        // 每次调用next麻烦，简单任务执行器
+        // function run(taskDef) {
+        //     let task = taskDef();
+        //     let result = task.next();
+
+        //     function step() {
+        //         if (!result.done) {
+        //             result = task.next(result.value);
+        //             step();
+        //         }
+        //     }
+        //     step();
+        // }
+        // run(function* () {
+        //     let value = yield 1;
+        //     console.log(value); // 1
+        //     value = yield value + 3;
+        //     console.log(value); // 4
+        // });
+    </script>
+</body>
+</html>

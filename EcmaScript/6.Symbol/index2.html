@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Symbol类型转换，因为Symbol没有其他类型的逻辑等价值，所以强制转换类型可能会出错
+        // let uid = Symbol.for("uid"),
+        //     desc = String(uid); // 等价于uid.toString();
+        // console.log(desc);
+        // 但是
+        // let uid = Symbol.for("uid"),
+        //     desc = uid + "";
+        // let uid = Symbol.for("uid"),
+        //     sum = Number(uid);
+        // sum = uid / 1;
+        // 思考，那转换成boolean值呢？
+        // let uid = Symbol.for("uid"),
+        //     bUid = Boolean(uid);
+        //     console.log(bUid);
+
+        // Symbol属性检索
+        // let uid = Symbol.for("uid");
+        // let uid2 = Symbol("uid2");
+        // let object = {
+        //     test: "test",
+        //     [uid]: "12345"
+        // };
+        // Object.defineProperty(object, "noenum",{
+        //     enumerable: false,
+        //     value: "noenum"
+        // });
+        // Object.defineProperty(object, uid2,{
+        //     enumerable: false,
+        //     value: "uid2"
+        // });
+        // // // Object.getOwnPropertyNames(object)所有除了symbol属性，Object.keys(object)只可枚举
+        // let symbols = Object.getOwnPropertySymbols(object);
+        // console.log(symbols.length); 
+        // console.log(symbols[0]); 
+        // console.log(object[symbols[0]]);
+    </script>
+</body>
+</html>

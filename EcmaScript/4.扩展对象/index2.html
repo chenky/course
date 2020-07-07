@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 增强对象原型
+        // ES5中有getPrototypeOf获取对象原型，ES6：setPrototypeOf
+
+        // function test(){};
+        // test.prototype = {};
+
+        // let person = {
+        //     getGreeting() {
+        //         return "Hello";
+        //     }
+        // };
+        // let dog = {
+        //     getGreeting() {
+        //         return "Woof";
+        //     }
+        // };
+        // // prototype is person
+        // let friend = Object.create(person);
+        // // console.log(friend.getGreeting()); // "Hello"
+        // // console.log(Object.getPrototypeOf(friend) === person); // true
+        // // set prototype to dog
+        // Object.setPrototypeOf(friend, dog);
+        // console.log(friend.getGreeting()); // "Woof"
+        // console.log(Object.getPrototypeOf(friend) === dog); // true
+
+        // super引用
+        let person = {
+            name: "person",
+            getGreeting() {
+                return "Hello";
+            }
+        };
+        let dog = {
+            getGreeting() {
+                return "Woof";
+            }
+        };
+        let friend = {
+            name: "friend",
+            getGreeting() { // 必须使用简写的方式           
+                // return Object.getPrototypeOf(this).getGreeting.call(this) + ", hi!";
+                return super.getGreeting() + ", hi!";
+            }
+        };
+
+        // // // set prototype to person
+        Object.setPrototypeOf(friend, person);
+        // console.log(friend.getGreeting()); // "Hello, hi!"
+
+        // // // set prototype to dog
+        // Object.setPrototypeOf(friend, dog);
+        // console.log(friend.getGreeting()); // "Woof, hi!"
+
+        // // 多重继承中的super
+        let thirdObj = {
+            name: "third",
+            getGreeting() {
+                // return Object.getPrototypeOf(this).getGreeting.call(this) + ", third hi!";
+                return super.getGreeting() + ", third hi!";
+            }
+        }
+        Object.setPrototypeOf(thirdObj, friend);
+        console.log(thirdObj.getGreeting()); 
+
+
+    </script>
+</body>
+
+</html>

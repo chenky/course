@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // var声明及变量提升
+        // function getValue(condition) {
+        //     if (condition) {
+        //         var value = "blue";
+        //         console.log("condition is "+condition+", in if value is:"+value);                
+        //     } else {
+        //         // value exists here with a value of undefined
+        //         console.log("condition is "+condition+", in else value is:"+value);  
+        //     }
+        //     console.log("condition is "+condition+", function end:" +　value);            
+        //     // value exists here with a value of undefined
+        // }
+        // function getValue(condition) {
+        //     var value;
+        //     if (condition) {
+        //         value = "blue";
+        //         console.log("condition is "+condition+", in if value is:"+value);                
+        //     } else {
+        //         // value exists here with a value of undefined
+        //         console.log("condition is "+condition+", in else value is:"+value);  
+        //     }
+        //     console.log("condition is "+condition+", function end:" +　value);            
+        //     // value exists here with a value of undefined
+        // }
+        // getValue(true);
+        // getValue(false);
+        // 通过var声明的变量会被升级到当前作用域的顶部
+
+        // 块级声明
+        // 作用域被限制在当前块中
+        // function getValue(condition) {
+        //     if (condition) {
+        //         let value = "blue";
+        //         console.log("condition is "+condition+", in if value is:"+value);                
+        //     } else {
+        //         console.log("condition is "+condition+", in else value is:"+value);  
+        //     }
+        //     // 访问不到
+        //     console.log("condition is "+condition+", function end:" +　value);            
+        // }
+        // getValue(true);
+        // 同一作用域中禁止重复声明
+        // var count = 30;
+        // // 抛异常
+        // let count = 40;        
+        // var count =30;
+        // if(true){
+        //     let count = 40;
+        //     console.log("inner:" + count);            
+        // }
+        // console.log("outer:"+ count);
+        // const声明，不可更改绑定，但可以修改对象属性值，必须初始化
+        // const obj = {
+        //     id: "1"
+        // };
+        // obj.id = "2";
+        // console.log(obj);        
+        // obj = {};
+        // 循环中的块作用域
+        // for (var index = 0; index < 10; index++) {
+        //     setTimeout(function(){
+        //         console.log(index);                
+        //     }, 0);            
+        // }
+        // for (var index = 0; index < 10; index++) {
+        //     setTimeout((function (index) {
+        //         return function () {
+        //             console.log(index);
+        //         }
+        //     })(index), 0);
+        // }
+        // for (let index = 0; index < 10; index++) {
+        //     setTimeout(function () {
+        //         console.log(index);
+        //     }, 0);
+        // }
+        // 全局作用域中声明
+        // var cql = "window";
+        // console.log(cql === window.cql);
+        // let cql1 = "cql1"
+        // console.log(cql1 in window);
+        
+        
+        
+
+    </script>
+</body>
+
+</html>

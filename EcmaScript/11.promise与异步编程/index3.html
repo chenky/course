@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // promise链返回值
+        // let p1 = new Promise(function (resolve, reject) {
+        //     resolve(42);
+        // });
+        // p1.then(function (value) {
+        //     console.log(value); // "42"
+        //     return value + 1;
+        //     // return "p1 return value"
+        // }).then(function (value) {
+        //     console.log(value); // "43"
+        // });
+        // 拒绝中也可以传递
+        // let p1 = new Promise(function (resolve, reject) {
+        //     reject(42);
+        // });
+        // p1.catch(function (value) {
+        //     // first fulfillment handler
+        //     console.log(value); // "42"
+        //     return value + 1;
+        // }).then(function (value) {
+        //     // second fulfillment handler
+        //     console.log(value); // "43"
+        // });
+
+
+        // promise返回promise
+        // let p1 = new Promise(function (resolve, reject) {
+        //     resolve(42);
+        // });
+        // let p2 = new Promise(function (resolve, reject) {
+        //     resolve(43);
+        // });
+        // p1.then(function (value) {
+        //     // first fulfillment handler
+        //     console.log(value); // 42
+        //     return p2;
+        // }).then(function (value) {
+        //     // second fulfillment handler
+        //     console.log(value); // 43
+        // });
+
+        // 拒绝的时候需要额外的catch
+        let p1 = new Promise(function (resolve, reject) {
+            resolve(42);
+        });
+        let p2 = new Promise(function (resolve, reject) {
+            reject(43);
+        });
+        p1.then(function (value) {
+            // first fulfillment handler
+            console.log(value); // 42
+            return p2;
+        }).then(function (value) {
+            // 没有注册reject，所以永远不会执行
+            console.log(value); // never called
+        })
+        .catch(function(value){
+            console.log(value);            
+        });
+    </script>
+</body>
+
+</html>

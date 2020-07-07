@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // ES6之前默认参数
+        // function makeRequest(url, timeout, callback) {
+            // timeout = 0 出问题； false,0," ", NaN, undefined, null
+            // timeout = timeout || 2000;
+            // timeout = (typeof timeout !== "undefined") ? timeout : 2000;
+            // callback = (typeof callback === "function") ? callback : function () {};
+        // }
+        // ES6默认参数
+        // function makeRequest(url, timeout = 2000, callback = function () {}) {}
+        // makeRequest("/foo");
+        // makeRequest("/foo", 500);
+        // makeRequest("/foo", 500, function (body) {
+        //     doSomething(body);
+        // });
+        // 思考
+        // function makeRequest(url, timeout = 2000, callback) {}
+
+        // ES5非严格模式下默认参数对arguments对象的影响
+        // function mixArgs(first, second) {
+        //     // "use strict"
+        //     console.log(first === arguments[0]);
+        //     console.log(second === arguments[1]);
+        //     first = "c";
+        //     second = "d";
+        //     console.log(first === arguments[0]);
+        //     console.log(second === arguments[1]);
+        // }
+        // mixArgs("a", "b");
+        // ES6中不影响arguments对象  
+        // function mixArgs(first, second = "b") {
+        //     console.log(arguments.length);
+        //     console.log(first === arguments[0]);
+        //     console.log(second === arguments[1]);
+        //     first = "c";
+        //     second = "d"
+        //     console.log(first === arguments[0]);
+        //     console.log(second === arguments[1]);
+        // }
+        // mixArgs("a");
+
+        // 默认参数表达式
+        // 可以使用表达式，后面的可以引用前面的变量, 默认参数是在调用时求值
+        // function getValue(value) {
+        //     return value + 5;
+        // }
+        // function add(first, second = getValue(first)) {
+        //     return first + second;
+        // }
+        // console.log(add(1, 1)); // 2
+        // console.log(add(1)); // 7
+        // 思考：那前面的是否可以引用后面的呢？
+
+        // 不定参数，js中声明的参数个数和传入的可以不一样, 思考：es6之前怎么实现？
+        // function pick(object, ...keys) {
+        //     console.log("arguments length is " + arguments.length);            
+        //     let result = Object.create(null);
+        //     for (let i = 0, len = keys.length; i < len; i++) {
+        //         result[keys[i]] = object[keys[i]];
+        //     }
+        //     return result;
+        // }
+        // let book = {
+        //     title: "Understanding ECMAScript 6",
+        //     author: "Nicholas C. Zakas",
+        //     year: 2015
+        // };
+        // let bookData = pick(book, "author", "year");
+        // console.log(bookData.author); // "Nicholas C. Zakas"
+        // console.log(bookData.year); // 2015
+        // // 不定参数不影响函数的length属性,定义是参数个数
+        // console.log(pick.length);
+        // let object = {
+        //     set name(...value) {
+        //         // do something
+        //     }
+        // };
+        // object.name;
+        // 不定参数不影响argments参数
+        function checkArgs(...args) {
+            console.log(args.length);
+            console.log(arguments.length);
+            console.log(args[0], arguments[0]);
+            console.log(args[1], arguments[1]);
+        }
+        checkArgs("a", "b");
+    </script>
+</body>
+
+</html>

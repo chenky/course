@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div class="element"></div>
+    <script>
+         // Weak Map, set, get, has, delete方法
+        // let map = new WeakMap(),
+        //     element = document.querySelector(".element"),
+        //     key1 = {};
+        // map.set(element, "Original");
+        // map.set(key1, "key1");
+        // console.log(map.has(element)); // true
+        // console.log(map.get(element)); // "Original"
+
+        // element.parentNode.removeChild(element);
+        // element = null;
+        // // // map.delete(element);
+
+        // console.log(map.has(element)); // false
+        // console.log(map.get(element)); // undefined
+
+        // ES6之前定义私有对象，都是通过这种立即调用函数表达式的方式，私有对象永远不会被销毁
+        var Person = (function () {
+
+            var privateData = {},
+                privateId = 0;
+
+            function Person(name) {
+                Object.defineProperty(this, "_id", {
+                    value: privateId++
+                });
+
+                privateData[this._id] = {
+                    name: name
+                };
+            }
+
+            Person.prototype.getName = function () {
+                return privateData[this._id].name;
+            };
+
+            return Person;
+        }());
+        
+        // // ES6 Weak Map解决了上述问题，当前实例作为键值，只要当前实例销毁，相关信息自动销毁
+        let Person = (function () {
+
+            let privateData = new WeakMap();
+
+            function Person(name) {
+                privateData.set(this, {
+                    name: name
+                });
+            }
+
+            Person.prototype.getName = function () {
+                return privateData.get(this).name;
+            };
+
+            return Person;
+        }());
+    </script>
+</body>
+</html>

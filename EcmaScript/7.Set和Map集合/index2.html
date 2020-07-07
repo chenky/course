@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Set</title>
+</head>
+<body>
+    <script>
+        // 数组去重
+        // function eliminateDuplicates(items) {
+        //     return [...new Set(items)];
+        // }
+        // let numbers = [1, 2, 3, 3, 3, 4, 5, "5", "string"],
+        //     noDuplicates = eliminateDuplicates(numbers);
+        // console.log(noDuplicates);
+
+        // Weak Set集合
+        // let set = new Set(),
+        //     key = {test: "test"};
+        // set.add(key);
+        // console.log(set.size); // 1
+        // key = null;  
+        // console.log([...set][0]);
+
+        // weak set只能存储对象值，不能存储原始值；不可迭代（即不支持for-of，forEach，size，keys，values）
+        // 只有add，delete，has方法
+        // let set = new WeakSet(),
+        //     key = {test: "test"};
+        // set.add(key);
+        // console.log(set.has(key)); // 1
+        // key = null;  
+        // console.log(set.has(key));
+    </script>
+</body>
+</html>

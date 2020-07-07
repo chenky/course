@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>迭代器和生成器</title>
+</head>
+
+<body>
+    <script>
+        // 生成器是返回迭代器的函数
+        // function* createIterator() {
+        // // yield可以返回任何值或表达式，且把执行权交出去，直到再次调用迭代器next方法
+        //     yield 1;
+        //     yield 2;
+        //     yield 3;
+        // }
+        // // 迭代器是专门为迭代过程设计的专有接口，有next方法，调用返回一个结果对象，包括value（值），done属性（是否还有更多返回值）
+        // // {value：val, done: false}
+        // let iterator = createIterator();
+        // // console.log(iterator.next().value); // 1
+        // // console.log(iterator.next().value); // 2
+        // // console.log(iterator.next().value); // 3
+        // console.log(iterator.next()); // 1
+        // console.log(iterator.next()); // 2
+        // console.log(iterator.next()); // 3
+        // console.log(iterator.next());
+        
+
+        // yield只能在生成器内部，否则报错
+        // function createIterator() {
+        //     yield 1;
+        //     yield 2;
+        //     yield 3;
+        // }
+        // yield和return都不能穿透函数边界，yield不可嵌套使用
+        // function* createIterator(items) {
+        //     items.forEach(function (item) {
+        //         yield item + 1;
+        //     });
+        // }
+        // function a(){
+        //     function b(){
+        //         for (let index = 0; index < array.length; index++) {
+        //             const element = array[index];
+        //             return;
+        //         }
+        //     }
+        // }
+
+        // 可迭代对象，ES6中数组，Set集合，Map集合，字符串都是可迭代对象，可以使用for-of访问
+        // let values = [1, 2, 3];
+        // for (let num of values[Symbol.iterator]()) {
+
+        //     // 每次循环都会调用next方法，并把value值存储在num变量中
+        //     console.log(num);
+        // }
+
+        // 访问默认迭代器
+        // let values = [1, 2, 3];
+        // let iterator = values[Symbol.iterator]();
+        // console.log(iterator.next()); // "{ value: 1, done: false }"
+        // console.log(iterator.next()); // "{ value: 2, done: false }"
+        // console.log(iterator.next()); // "{ value: 3, done: false }"
+        // console.log(iterator.next()); // "{ value: undefined, done: true }"
+
+        // 由于具有Symbol.iterator属性的对象都有默认迭代器，因此可用它检测对象是否为可迭代对象
+        // function isIterable(object) {
+        //     return typeof object[Symbol.iterator] === "function";
+        // }
+        // console.log(isIterable([1, 2, 3])); // true
+        // console.log(isIterable("Hello")); // true
+        // console.log(isIterable(new Map())); // true
+        // console.log(isIterable(new Set())); // true
+        // console.log(isIterable(new WeakMap())); // false
+        // console.log(isIterable(new WeakSet())); // false
+
+        // 开发者定义的对象都是不可迭代对象，但可以给Symbol.iterator属性添加一个生成器来创建迭代器。
+        let collection = {
+            items: [],
+            *[Symbol.iterator]() {
+                for (let item of this.items) {
+                    yield item;
+                }
+            }
+        };
+        collection.items.push(1);
+        collection.items.push(2);
+        collection.items.push(3);
+        for (let x of collection) {
+            console.log(x);
+        }
+
+
+    </script>
+</body>
+
+</html>

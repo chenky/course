@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // javascript天生适合处理异步编程，如单击或异步请求等，传统的方式是使用回调
+        // 回调地狱及可读性差等缺点，promise诞生
+        // promise生命周期，分为未处理（unsettled，包括进行中pending）, 
+        // 已处理（settled，包括操作成功fulfilled，操作失败rejected） 
+
+        // 创建promise
+        // let fs = require("fs");
+        // function readFile(filename) {
+        //     // 通过promise构造函数创建，传入执行函数，包括resolve（完成调用），reject（失败调用）参数
+        //     return new Promise(function (resolve, reject) {
+        //         // trigger the asynchronous operation
+        //         fs.readFile(filename, {
+        //             encoding: "utf8"
+        //         }, function (err, contents) {
+        //             if (err) {
+        //                 reject(err);
+        //                 return;
+        //             }
+        //             resolve(contents);
+
+        //         });
+        //     });
+        // }
+
+
+        // let promise = readFile("example.txt");
+        // promise.then(function (contents) {
+        //     // fulfillment
+        //     console.log(contents);
+        // }, function (err) {
+        //     // rejection
+        //     console.error(err.message);
+        // }).then().then().then();
+        // promise.then(function (contents) {
+        //     // fulfillment
+        //     console.log(contents);
+        // });
+
+        // promise.then(null, function (err) {
+        //     // rejection
+        //     console.error(err.message);
+        // });
+        // // // 等价于
+        // promise.catch(function (err) {
+        //     console.log(err.message);
+
+        // });
+
+
+        // 执行顺序, 传入then，catch方法的函数都会被添加到任务队列中并异步执行
+        // 思考及课后练习，包括async，await
+        // setTimeout(function(){
+        //     console.log("setTimeout is runing");            
+        // },0);
+        // let testPromise = new Promise(function(resolve, reject){
+        //     console.log("promise is runing");
+        //     resolve();           
+        // });
+        // testPromise.then(function(){
+        //     console.log("resolve is done");            
+        // });
+        // console.log("hello world");
+
+
+        // let promise = Promise.resolve(1);
+        // promise.then(function(value){
+        //     console.log(value);            
+        // });
+        // console.log("hi");
+
+        async function async1() {
+            console.log('async1 start')
+            await async2()
+            console.log('async1 end')
+        }
+        async function async2() {
+            console.log('async2')
+        }
+        console.log('script start')
+        setTimeout(function () {
+            console.log('setTimeout')
+        }, 0)
+        async1();
+        new Promise(function (resolve) {
+            console.log('promise1')
+            resolve();
+        }).then(function () {
+            console.log('promise2')
+        })
+        console.log('script end')
+
+
+        // script start
+        // async1 start
+        // async2
+        // promise1
+        //  script end
+        // promise2
+        // async1 end
+        // setTimeout
+    </script>
+</body>
+
+</html>

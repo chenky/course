@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 字面量声明对象
+        // var person = {
+        //     name: "Nicholas",
+        //     // sayName: function () {
+        //     // // es6写法
+        //     sayName() {
+        //         console.log(this.name);
+        //     }
+        // };
+
+        // var suffix = " name";
+        // var person = {
+        //     ["first" + suffix]: "Nicholas",
+        //     ["last" + suffix]: "Zakas"
+        // };
+        // console.log(person["first"+suffix]); // "Nicholas"
+        // console.log(person["last name"]); // "Zakas"
+
+        // 新增方法
+        // Object.is()方法，提供更多选择对比是否相对，视情况使用==，===，is方法
+        // console.log(+0 == -0); // true
+        // console.log(+0 === -0); // true
+        // console.log(Object.is(+0, -0)); // false
+
+        // console.log(NaN == NaN); // false
+        // console.log(NaN === NaN); // false
+        // console.log(Object.is(NaN, NaN)); // true
+
+        // console.log(5 == 5); // true
+        // console.log(5 == "5"); // true
+        // console.log(5 === 5); // true
+        // console.log(5 === "5"); // false
+        // console.log(Object.is(5, 5)); // true
+        // console.log(Object.is(5, "5")); // false
+
+        // Object.assign(target, [source...]), 按顺序复制源对象到目标对象，后面覆盖前面
+        // var receiver = {};
+        // Object.assign(receiver, {
+        //     type: "js",
+        //     name: "file.js"
+        // }, {
+        //     type: "css"
+        // });
+        // console.log(receiver.type); // "css"
+        // console.log(receiver.name); // "file.js"
+        // 不能复制访问器属性，只能转换成接收对象的数据属性
+        // var receiver = {},
+        //     supplier = {
+        //         get name() {
+        //             return "file.js";
+        //         },
+        //         sayName(){
+
+        //         }
+        //     };
+        // Object.assign(receiver, supplier);
+        // var descriptor = Object.getOwnPropertyDescriptor(receiver, "name");
+        // var descriptor2 = Object.getOwnPropertyDescriptor(receiver,"sayName");
+        // console.log(descriptor2.value);
+        
+        // console.log(descriptor.value); // "file.js"
+        // console.log(descriptor.get); // undefined
+
+        // 自有属性枚举顺序，数字健按升序，字符，symbol健按加入顺序，注意for in枚举顺序是不确定的，浏览器厂商决定
+        // var obj = {
+        //     a: 1,
+        //     0: 1,
+        //     c: 1,
+        //     2: 1,
+        //     b: 1,
+        //     1: 1
+        // };
+        // obj.d = 1;
+        // console.log(Object.getOwnPropertyNames(obj).join("")); // "012acbd"
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // class Rectangle {
+        //     constructor(length, width) {
+        //         console.log(new.target === Rectangle);
+        //         this.length = length;
+        //         this.width = width;
+        //     }
+        // }
+
+        // // new.target is Rectangle， new。target指向当前类的构造函数
+        // var obj = new Rectangle(3, 4); 
+
+
+        // class Rectangle {
+        //     constructor(length, width) {
+        //         console.log(new.target === Rectangle);
+        //         this.length = length;
+        //         this.width = width;
+        //     }
+        // }
+        // class Square extends Rectangle {
+        //     constructor(length) {
+        //         super(length, length);            
+                
+        //     }
+        // }
+        // // // new.target is Square，因为当前类是Square
+        // var obj = new Square(3); 
+
+
+
+        // 定义抽象类
+        class Shape {
+            constructor() {
+                if (new.target === Shape) {
+                    throw new Error("This class cannot be instantiated directly.")
+                }
+            }
+        }
+
+        class Rectangle extends Shape {
+            constructor(length, width) {
+                super();
+                this.length = length;
+                this.width = width;
+            }
+        }
+
+        // var x = new Shape(); // throws error
+
+        var y = new Rectangle(3, 4); // no error
+        console.log(y instanceof Shape); // true
+        console.log(y instanceof Rectangle);
+        
+    </script>
+</body>
+
+</html>

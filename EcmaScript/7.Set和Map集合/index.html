@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Set and Map</title>
+</head>
+
+<body>
+    <script>
+        // Set类型是一种有序列表，包含相互独立的非重复值，通过new Set()创建
+        // let set = new Set([1, 2, 3, 4, 5, 5, 5, 5]);
+        // console.log(set.size);
+
+        // has方法检测是否存在某值
+        // let set = new Set();
+        // set.add(5);
+        // set.add("5");
+        // console.log(set.has(5));
+        // console.log(set.has(6));
+
+        // 移除元素
+        // let set = new Set();
+        // set.add(5);
+        // set.add("5");
+        // console.log(set.has(5)); 
+        // set.delete(5);
+        // console.log(set.has(5)); // false
+        // console.log(set.size); // 1
+        // set.clear();
+        // console.log(set.has("5")); // false
+        // console.log(set.size);
+
+        // 遍历集合
+        // let set = new Set([3, "test"]);
+        // // let set = new Set();
+        // // set.add(5);
+        // // set.add("test");
+        // // value,key参数都是集合输出的值
+        // set.forEach(function (value, key, ownerSet) {
+        //     console.log(key + " " + value);
+        //     console.log(ownerSet === set);
+        // });
+
+        // Set集合，数组转换
+        // 数组-》Set集合
+        // let set = new Set([1, 2, 3, 4]);
+
+        // Set集合-》数组
+        let set = new Set([1, 2, 3, 3, 3, 4, 5]),
+            array = [...set];
+        console.log(array);
+
+
+
+    </script>
+</body>
+
+</html>

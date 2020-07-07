@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://cdn.mdn.mozilla.net/static/build/styles/samples.37902ba3b7fe.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+    p {
+        margin-left: 0.2em;
+        font-family: "Open Sans", sans-serif;
+    }
+
+    .container {
+        display: flex;
+    }
+
+    .parent {
+        width: 220px;
+        border: solid 10px #FFC129;
+        margin: 0.8em;
+    }
+
+    .child {
+        width: 100%;
+        margin: 2em auto;
+        background-color: rgba(229, 232, 252, 0.6);
+    }
+
+    .border-padding {
+        padding: 5px;
+        border: solid #5B6DCD 10px;
+    }
+
+    .css {
+        font-family: monospace;
+    }
+    </style>
+</head>
+
+<body>
+  <!-- reference: https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Box_Model/Introduction_to_the_CSS_box_model -->
+    <div class="container">
+        <div class="parent">
+            <p>Parent container</p>
+            <div class="child" style="box-sizing: content-box;">
+                <p>Child container</p>
+                <p class="css">
+                    box-sizing: content-box;
+                    <br/> width: 100%;
+                    <br/> padding: 0;
+                    <br/> border-width: 0;</p>
+            </div>
+        </div>
+        <div class="parent">
+            <p>Parent container</p>
+            <div class="child border-padding" style="box-sizing: content-box;">
+                <p>Child container</p>
+                <p class="css">
+                    box-sizing: content-box;
+                    <br/> width: 100%;
+                    <br/> padding: 5px;
+                    <br/> border-width: 10px;</p>
+            </div>
+        </div>
+        <div class="parent">
+            <p>Parent container</p>
+            <div class="child border-padding" style="box-sizing: border-box;">
+                <p>Child container</p>
+                <p class="css">
+                    box-sizing: border-box;
+                    <br/> width: 100%;
+                    <br/> padding: 5px;
+                    <br/> border-width: 10px;</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

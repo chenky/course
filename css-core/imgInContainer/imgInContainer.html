@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>容器尺寸固定，图片尺寸不固定，在固定的容器中看到完整图片</title>
+  <style>
+    .demo{
+      display: flex;
+      flex-direction: row;
+    }
+    .container{
+      width: 200px;
+      height: 200px;
+      background-color: #ccf5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 20px;
+    }
+    .test-img{
+      max-width: 100%;
+      max-height: 100%;
+    }
+    .test-img2{
+      object-fit: scale-down;
+      width: 100%;
+      height: 100%;
+    }
+    /* .container1,.container2,.container3{
+      width: 200px;
+      height: 200px;
+      background-color: #ccf5f5;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      margin-right: 20px;
+    }
+    .container1{
+      background-image: url('150&80.png');
+    }
+    .container2{
+      background-image: url('110&1000.png');
+    }
+    .container3{
+      background-image: url('1400&110.png');
+    } */
+  </style>
+</head>
+<body>
+  <h3>容器尺寸固定，图片尺寸不固定，在固定的容器中看到完整图片, 方法一通过设置max-width,max-height</h3>
+  <div class="demo">
+    <div class="container">
+      <img src="150&80.png" class="test-img">
+    </div>
+    <div class="container">
+      <img src="110&1000.png" class="test-img">
+    </div>
+    <div class="container">
+      <img src="1400&110.png" class="test-img">
+    </div>
+  </div>
+  <h3>容器尺寸固定，图片尺寸不固定，在固定的容器中看到完整图片, 方法二通过设置object-fit，ie支持很差，注意兼容性问题</h3>
+  <div class="demo">
+    <div class="container">
+      <img src="150&80.png" class="test-img2">
+    </div>
+    <div class="container">
+      <img src="110&1000.png" class="test-img2">
+    </div>
+    <div class="container">
+      <img src="1400&110.png" class="test-img2">
+    </div>
+  </div>
+  <!-- <h3>容器尺寸固定，图片尺寸不固定，在固定的容器中看到完整图片, 方法三通过背景图片</h3>
+  <div class="demo">
+    <div class="container1">
+    </div>
+    <div class="container2">
+    </div>
+    <div class="container3">
+    </div>
+  </div> -->
+</body>
+</html>

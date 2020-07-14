@@ -3,22 +3,108 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>flex概念及排列方式</title>
+  <style>
+    .wrap-center{
+      display: flex;
+      /* 交叉轴上如何对齐 */
+      align-items: center;
+      /* 主轴上的对齐方式 */
+      justify-content: center;
+      width: 100px;
+      height: 100px;
+      background-color: cadetblue;
+    }
+    .wrap-center-child{
+      display: flex;
+      /* 交叉轴上如何对齐 */
+      align-items: center;
+      /* 主轴上的对齐方式 */
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      background-color: blueviolet;
+    }
+    .wrap-3cols{
+      display: flex;
+      align-items: center;
+      width: 100px;
+      height: 100px;
+      background-color: cadetblue;
+    }
+    .col{
+      flex: 1;
+      height: 50px;
+      background-color: blueviolet;
+    }
+    .col:not(:last-child){
+      margin-right: 5px;
+    }
+    .wrap-12cols{
+      display: flex;
+      align-items: center;
+      width: 100px;
+      height: 100px;
+      background-color: cadetblue;
+    }
+    .col12{
+      height: 50px;
+      background-color: blueviolet;
+    }
+    .col12:not(:last-child){
+      margin-right: 5px;
+    }
+    .col-fixed{
+      width: 10px;
+    }
+    .col-half{
+      flex:1
+    }
+    .wrap-flex{
+      display: flex;
+      align-items: center;
+      width: 100px;
+      height: 100px;
+      background-color: cadetblue;
+    }
+    .col-basis{
+      /* flex-basis属性定义了在分配多余空间之前，项目占据的主轴空间（main size）。浏览器根据这个属性，计算主轴是否有多余空间。它的默认值为auto，即项目的本来大小 */
+      flex-basis: 10px;
+      width: 20px;
+    }
+    .col-grow{
+      flex: 1;
+    }
+  </style>
 </head>
 <body>
   <!-- reference: http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html
   http://www.ruanyifeng.com/blog/2015/07/flex-examples.html -->
-  <h2>flex图示</h2>
+  <h2>flex图示, 一维排列方式，不同于grid可以二维排列</h2>
   <p>
     <img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071004.png"></img>
   </p>
   <h2>居中对齐demo</h2>
-  <div></div>
+  <div class="wrap-center">
+    <div class="wrap-center-child">child</div>
+  </div>
   <h2>三列平分宽度demo</h2>
-  <div></div>
+  <div class="wrap-3cols">
+    <div class="col"></div>
+    <div class="col"></div>
+    <div class="col"></div>
+  </div>
   <h2>一列固定，另外两列平分宽度demo</h2>
-  <div></div>
-  <h2>空间不够时如果缩放demo</h2>
-  <div></div>
+  <div class="wrap-12cols">
+    <div class="col12 col-fixed"></div>
+    <div class="col12 col-half"></div>
+    <div class="col12 col-half"></div>
+  </div>
+  <h2>空间不够时如何缩放demo</h2>
+  <div class="wrap-flex">
+    <div class="col12 col-fixed"></div>
+    <div class="col12 col-basis"></div>
+    <div class="col12 col-grow"></div>
+  </div>
 </body>
 </html>

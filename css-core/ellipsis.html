@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ellipsis省略号</title>
+  <style>
+    .content{
+      width: 100px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      background-color: #d04d24;
+    }
+    .muli-content{
+      width: 100px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      background-color: #d04d24;
+    }
+    .js-content{
+      width: 100px;
+      background-color: #d04d24;
+    }
+  </style>
+</head>
+<body>
+  <script>
+      /**
+     * 控制字符串个数，多出的使用省略号
+     * @param  {String} num 控制的字符串个数
+     * @return {String}     返回带省略号的字符串
+     */
+    String.prototype.clamp = function (num) {
+      var r = /[^\x00-\xff]/g;
+      if (this.replace(r, "mm").length <= num) return this;
+      var m = Math.floor(num / 2);
+      for (var i = m; i < this.length; i++) {
+        if (this.substr(0, i).replace(r, "mm").length >= num) {
+          return this.substr(0, i) + "...";
+        }
+      }
+      return this;
+    };
+  </script>
+  <h3>css实现单行省略号</h3>
+  <div class="content">css控制省略号css控制省略号css控制省略号</div>
+  <h3>css实现多行省略号</h3>
+  <div class="muli-content">多行省略号多行省略号多行省略号多行省略号多行省略号多行省略号多行省略号多行省略号多行省略号多行省略号</div>
+  <h3>js实现省略号</h3>
+  <div id='js-content1' class="js-content"> 
+  </div>
+  <h3>js实现多行省略号</h3>
+  <div id='js-content2' class="js-content"> 
+  </div>
+  <script>
+    document.querySelector('#js-content1').innerText = "多行省略号多行省略号多行省略号多行省略号多行省略号多行省略号多行省略号多行省略号多行省略号多行省略号".clamp(10);
+    document.querySelector('#js-content2').innerText = "多行省略号多行省略号多行省略号多行省略号多行省略号多行省略号多行省略号多行省略号多行省略号多行省略号".clamp(30);
+  </script>
+</body>
+</html>

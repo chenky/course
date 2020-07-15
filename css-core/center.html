@@ -4,8 +4,73 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>垂直，水平居中效果</title>
+  <style>
+    .panel{
+      background-color: blueviolet;
+      width: 300px;
+      height: 300px;
+    }
+    .item{
+      background-color: chocolate;
+      width: 100px;
+      height: 100px;  
+      margin: auto;    
+    }
+    .position-panel{
+      position: relative;
+    }
+    .position-item{
+      position:absolute;
+      left: 50%;
+      top: 50%;
+      margin-top: -50px;
+      margin-left: -50px;
+    }
+    .position-panel2{
+      position: relative;
+    }
+    .position-item2{
+      position:absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,-50%);
+    }
+    .table-cell-panel{
+      display: table-cell;
+      vertical-align: middle;
+    }
+    .flex-panel{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .grid-panel{
+      display: grid;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
 </head>
 <body>
-  
+  <h3>方案1：通过绝对定位，维护性差，尺寸不固定时需要javascript动态计算</h3>
+  <div class="panel position-panel">
+    <div class="item position-item">方案1</div>
+  </div>
+  <h3>方案2：通过绝对定位+transform: translate(-50%,-50%)实现，尺寸可以不固定</h3>
+  <div class="panel position-panel2">
+    <div class="item position-item2">方案2</div>
+  </div>
+  <h3>方案3：table-cell</h3>
+  <div class="panel table-cell-panel">
+    <div class="item table-cell-item">方案3</div>
+  </div>
+  <h3>方案4：flex</h3>
+  <div class="panel flex-panel">
+    <div class="item">方案4</div>
+  </div>
+  <h3>方案5：grid</h3>
+  <div class="panel grid-panel">
+    <div class="item">方案5</div>
+  </div>
 </body>
 </html>

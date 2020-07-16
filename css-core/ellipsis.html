@@ -25,6 +25,71 @@
       width: 100px;
       background-color: #d04d24;
     }
+    .flex-basic-panel{
+      background-color: cornflowerblue;
+    }
+    .basic-left{
+      margin-right: 10px;
+      background-color: darkcyan;
+    }
+    .basic-right{
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      background-color: #eae39d;
+    }
+    .panel1{
+      width: 100%;
+      overflow: hidden;
+    }
+    .left1{
+      width: 100px;
+      float: left;
+    }
+    .right1{
+      float: left;
+      width: calc(100% - 110px);
+    }
+    .panel2{
+      display: flex;
+      align-items: center;      
+    }
+    .left2{
+      flex-basis: 100px;
+      flex-shrink: 0;
+    }
+    .right2{
+      flex: 1;
+    }
+    .panel3{
+      display: flex;
+      align-items: center;      
+    }
+    .left3{
+      flex: 1;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    .right3{
+      flex: 1;
+    }
+    .gridtable{
+      width: 100%;
+      table-layout:fixed;
+      border-collapse: collapse;
+    }
+    .gridtable th, .gridtable td{
+      border: 1px salmon solid;
+    }
+    .gridtable th{
+      width: 50%;      
+    }
+    .gridtable td{
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
   </style>
 </head>
 <body>
@@ -35,15 +100,12 @@
      * @return {String}     返回带省略号的字符串
      */
     String.prototype.clamp = function (num) {
-      var r = /[^\x00-\xff]/g;
-      if (this.replace(r, "mm").length <= num) return this;
-      var m = Math.floor(num / 2);
-      for (var i = m; i < this.length; i++) {
-        if (this.substr(0, i).replace(r, "mm").length >= num) {
-          return this.substr(0, i) + "...";
-        }
+      if(typeof num !== 'number') {
+        console.error('arguments of num must be number')
+        return this
       }
-      return this;
+      if(this.length<= num) return this;
+      return this.substr(0,num) + "..."
     };
   </script>
   <h3>css实现单行省略号</h3>
@@ -57,8 +119,38 @@
   <div id='js-content2' class="js-content"> 
   </div>
   <script>
-    document.querySelector('#js-content1').innerText = "多行省略号多行省略号多行省略号多行省略号多行省略号多行省略号多行省略号多行省略号多行省略号多行省略号".clamp(10);
-    document.querySelector('#js-content2').innerText = "多行省略号多行省略号多行省略号多行省略号多行省略号多行省略号多行省略号多行省略号多行省略号多行省略号".clamp(30);
+    document.querySelector('#js-content1').innerText = "多行省略号多行省略号多行省略号多行省略号多行省略号多行省略号多行省略号多行省略号多行省略号多行省略号".clamp(5);
+    document.querySelector('#js-content2').innerText = "多行省略号多行省略号多行省略号多行省略号多行省略号多行省略号多行省略号多行省略号多行省略号多行省略号".clamp(15);
   </script>
+  <h3>css实现弹性宽度省略号方案1: 通过calc(100% - 110px)，维护性扩展性不好不好</h3>
+  <div class="flex-basic-panel panel1">
+    <div class="basic-left left1">左侧占位符</div>
+    <div class="basic-right right1">css实现弹性宽度省略号方案css实现弹性宽度省略号方案css实现弹性宽度省略号方案1</div>
+  </div>
+  <h3>css实现弹性宽度省略号方案2：通过设置flex为1维护性扩展性更好</h3>
+  <div class="flex-basic-panel panel2">
+    <div class="basic-left left2">左侧占位符</div>
+    <div class="basic-right right2">css实现弹性宽度省略号方案css实现弹性宽度省略号方案css实现弹性宽度省略号方案2</div>
+  </div>
+  <h3>css实现所有子元素弹性宽度省略号：</h3>
+  <div class="flex-basic-panel panel3">
+    <div class="basic-left left3">左侧占位符左侧占位符左侧占位符左侧占位符左侧占位符</div>
+    <div class="basic-right right3">css实现所有子元素弹性宽度省略号css实现所有子元素弹性宽度省略号</div>
+  </div>  
+  <h3>css实现table弹性宽度省略号：</h3>
+  <table class="gridtable">
+    <tr>
+        <th>姓名</th>
+        <th>信息</th>
+    </tr>
+    <tr>
+        <td>xiaobexiaobexiaobexiaobexiaobexiaobexiaobe</td>
+        <td>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</td>
+    </tr>
+    <tr>
+        <td>xiaobixiaobexiaobexiaobexiaobexiaobe</td>
+        <td>bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb</td>
+    </tr>
+</table>
 </body>
 </html>

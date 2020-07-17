@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>高度自适应滚动条</title>
+  <style>
+    html,body{
+      height: 100%;
+      margin: 0px;
+      padding: 0px;
+    }
+    .panel{
+      display: flex;
+      height: 100%;
+      flex-direction: column;
+    }
+    .header{
+      flex-basis: 100px;
+      flex-shrink: 0;
+      background-color: skyblue;
+      margin-bottom: 20px;
+    }
+    .content{
+      flex: 1;
+      background-color: seagreen;
+      overflow-y: auto;
+    }
+    .item{
+      width: 200px;
+      height: 200px;
+      margin-bottom: 20px;
+      background-color: salmon;
+    }
+  </style>
+</head>
+<body>
+  <div class="panel">
+    <div class="header"></div>
+    <div class="content">
+      <div class="item">1</div>
+      <div class="item">2</div>
+      <div class="item">3</div>
+    </div>
+  </div>
+</body>
+</html>

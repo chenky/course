@@ -8,16 +8,13 @@
 //     return ret;
 //   }
 // }
-// function compose(...fns){  
-//   return function(...args){ 
-//     let ret = args   
-//     fns.forEach((fn)=>{
-//       ret = fn.apply(this, Array.isArray(ret) ? ret : [ret])
-//     })
-//     return ret;
-//   }
-//   fns.reduce((prev,currentval))
-// }
+function compose(...fns){  
+  return (...args) => {
+    return fns.reduce((arg,currentFn)=>{
+      return currentFn.apply(this, Array.isArray(arg) ? arg : [arg])
+    }, args)    
+  }
+}
 function fn1(...args){
   return args.reduce((total, val)=>{
     total += val;
@@ -31,5 +28,5 @@ function fn3(arg){
   return arg+"aaa";
 }
 
-const testCp = compose(fn1,fn2,fn3)(1,2,3,3)
+const testCp = compose(fn1,fn2,fn3)(1,2,3)
 console.log(testCp)

@@ -19,7 +19,10 @@
         // console.log(clonedColors);        
 
         // let colors = ["red", "green", "blue"];
-        // let [...clonedColors] = colors;
+        // // 解构
+        // // let [...clonedColors] = colors;
+        // // 扩展符
+        // let clonedColors = [...colors]
         // colors[3] = "white";
         // console.log(colors); 
         // console.log(clonedColors);
@@ -70,22 +73,26 @@
         //     expires
         // }) {
         //     // code to set the cookie
+        //     console.log(name, value, secure, path, domain, expires)
         // }
         // setCookie("type", "js", {
         //     secure: true,
         //     expires: 60000
         // });
+        
+        // function setCookie(name, value, {
+        //     secure=true,
+        //     path='/',
+        //     domain='.',
+        //     expires= new Date(Date.now() + 360000000)
+        // }) {
+        //     // ...
+        //     console.log(name, value, secure, path, domain, expires)
+        // }
+        // setCookie("type", "js", {});
         // 问题来了
         // setCookie("type", "js");
         // 等价于 let { secure, path, domain, expires } = undefined;
-        function setCookie(name, value, {
-            secure,
-            path,
-            domain,
-            expires
-        } = {}) {
-            // ...
-        }
         // 解构参数的默认值
         function setCookie(name, value, {
             secure = false,
@@ -99,7 +106,7 @@
             console.log(expires);
         }
         // setCookie("a","b");
-        setCookie("a","b",{secure: true, domain:"midea.com"});
+        setCookie("a","b",{secure: true, domain:"cql.com"});
 
     </script>
 </body>

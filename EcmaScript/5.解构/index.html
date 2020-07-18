@@ -19,7 +19,7 @@
         //     save = options.save;
 
 
-        // 对象解构，总是能够根据数据结构把正确的值付给正确的对象，必须初始化
+        // 对象解构，总是能够根据数据结构把正确的值付给正确的对象，
         // let node = {
         //     type: "Identifier",
         //     name: "foo"
@@ -32,7 +32,7 @@
         // console.log(type);
         // console.log(name);
         
-        
+        // 必须初始化, 否则抛出异常
         // let {
         //     type,
         //     name
@@ -45,9 +45,7 @@
         // };
         // let {
         //     type,
-        //     // name,
         //     name = "test",
-        //     // value
         //     value = true
         // } = node;
         // console.log(type); 
@@ -61,10 +59,12 @@
         // };
         // let {
         //     type: localType,
-        //     name: localName = "bar"
+        //     name: localName = "bar",
+        //     value: localValue = 'default local value'
         // } = node;
         // console.log(localType); 
         // console.log(localName);
+        // console.log(localValue);
 
         // 嵌套对象解构
         // let node = {
@@ -103,6 +103,9 @@
         // let colors = ["red", "green", "blue"];
         // let [, , thirdColor] = colors;
         // console.log(thirdColor);
+        // let [first, ...restArgs] = colors;
+        // let [first, ...restArgs, thirdcolor1] = colors;
+        // console.log(first, restArgs)
 
         // 赋值解构
         // let a = 1,

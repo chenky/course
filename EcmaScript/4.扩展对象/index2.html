@@ -11,10 +11,7 @@
 <body>
     <script>
         // 增强对象原型
-        // ES5中有getPrototypeOf获取对象原型，ES6：setPrototypeOf
-
-        // function test(){};
-        // test.prototype = {};
+        // ES5中有getPrototypeOf获取对象原型, ES6：setPrototypeOf
 
         // let person = {
         //     getGreeting() {
@@ -26,10 +23,10 @@
         //         return "Woof";
         //     }
         // };
-        // // prototype is person
+        // prototype is person
         // let friend = Object.create(person);
-        // // console.log(friend.getGreeting()); // "Hello"
-        // // console.log(Object.getPrototypeOf(friend) === person); // true
+        // console.log(friend.getGreeting()); // "Hello"
+        // console.log(Object.getPrototypeOf(friend) === person); // true
         // // set prototype to dog
         // Object.setPrototypeOf(friend, dog);
         // console.log(friend.getGreeting()); // "Woof"
@@ -39,29 +36,31 @@
         let person = {
             name: "person",
             getGreeting() {
-                return "Hello";
+                return this.name + " Hello";
             }
         };
         let dog = {
+            name: 'dog',
             getGreeting() {
-                return "Woof";
+                return `${this.name} Woof`;
             }
         };
         let friend = {
             name: "friend",
             getGreeting() { // 必须使用简写的方式           
                 // return Object.getPrototypeOf(this).getGreeting.call(this) + ", hi!";
+                // super引用相当于指向对象原型指针
                 return super.getGreeting() + ", hi!";
             }
         };
 
         // // // set prototype to person
         Object.setPrototypeOf(friend, person);
-        // console.log(friend.getGreeting()); // "Hello, hi!"
+        console.log(friend.getGreeting()); 
 
         // // // set prototype to dog
         // Object.setPrototypeOf(friend, dog);
-        // console.log(friend.getGreeting()); // "Woof, hi!"
+        // console.log(friend.getGreeting()); 
 
         // // 多重继承中的super
         let thirdObj = {

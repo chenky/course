@@ -12,7 +12,7 @@
     <script>
         // 字面量声明对象
         // var person = {
-        //     name: "Nicholas",
+        //     name: "cql",
         //     // sayName: function () {
         //     // // es6写法
         //     sayName() {
@@ -22,10 +22,10 @@
 
         // var suffix = " name";
         // var person = {
-        //     ["first" + suffix]: "Nicholas",
+        //     ["first" + suffix]: "cql",
         //     ["last" + suffix]: "Zakas"
         // };
-        // console.log(person["first"+suffix]); // "Nicholas"
+        // console.log(person["first"+suffix]); // "cql"
         // console.log(person["last name"]); // "Zakas"
 
         // 新增方法
@@ -57,33 +57,37 @@
         // console.log(receiver.name); // "file.js"
         // 不能复制访问器属性，只能转换成接收对象的数据属性
         // var receiver = {},
-        //     supplier = {
-        //         get name() {
-        //             return "file.js";
-        //         },
-        //         sayName(){
+        // supplier = {
+        //     get name() {
+        //         return "file.js";
+        //     },
+        //     sayName(){
 
-        //         }
-        //     };
+        //     }
+        // };
         // Object.assign(receiver, supplier);
+        // console.log(receiver)
         // var descriptor = Object.getOwnPropertyDescriptor(receiver, "name");
         // var descriptor2 = Object.getOwnPropertyDescriptor(receiver,"sayName");
-        // console.log(descriptor2.value);
+        // console.log(descriptor.value, descriptor.get, descriptor2.value);
         
-        // console.log(descriptor.value); // "file.js"
-        // console.log(descriptor.get); // undefined
 
         // 自有属性枚举顺序，数字健按升序，字符，symbol健按加入顺序，注意for in枚举顺序是不确定的，浏览器厂商决定
-        // var obj = {
-        //     a: 1,
-        //     0: 1,
-        //     c: 1,
-        //     2: 1,
-        //     b: 1,
-        //     1: 1
-        // };
-        // obj.d = 1;
-        // console.log(Object.getOwnPropertyNames(obj).join("")); // "012acbd"
+        var obj = {
+            a: 1,
+            0: 1,
+            c: 1,
+            2: 1,
+            b: 1,
+            1: 1
+        };
+        obj.d = 1;
+        console.log(Object.getOwnPropertyNames(obj).join("")); // "012acbd"
+        // for (const key in obj) {
+        //   if (obj.hasOwnProperty(key)) {
+        //     console.log(key);
+        //   }
+        // }
 
 
     </script>

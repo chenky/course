@@ -20,22 +20,27 @@
         // name属性
         // var a = function (n) {}
         // console.log(a.name);
+        // var b1 = function b(n) {}
+        // console.log(b1.name);
+
         // var person = {
         //     get firstName() {
-        //         return "Nicholas"
+        //         return "cql"
         //     },
         //     sayName: function () {
         //         console.log(this.name);
         //     }
         // }
         // console.log(person.sayName.name); // "sayName"
+        // console.log(person.firstName.name)
         // console.log(person["firstName"].name);        
         // var descriptor = Object.getOwnPropertyDescriptor(person, "firstName");
         // console.log(descriptor.get.name); // "get firstName"
+
         // var doSomething = function () {
         //     // ...
         // };
-        // console.log(doSomething.bind().name); // "bound doSomething"
+        // console.log(doSomething.bind().name); // bind 绑定会有bound前缀 "bound doSomething"
         // console.log((new Function()).name); // "anonymous"
 
         // ES6之前无法区分函数是否通过new调用
@@ -46,31 +51,32 @@
         //         throw new Error("You must use new with Person.")
         //     }
         // }
-        // var person = new Person("Nicholas");
-        // var notAPerson = Person("Nicholas");  
-        // var notAPerson = Person.call(person, "Michael"); // works!
-        // new.target对象，指向new对象的实例
+        // var person = new Person("cql");
+        // // var notAPerson = Person("cql");  
+        // var notAPerson = Person.call(person, "chenky"); // 也可以
+
+        // new.target元属性对象，指向new对象的实例
         // function Person(name) {
-        //     if (typeof new.target !== "undefined") {
-        //     // if (new.target === Person) {
+        //     // if (typeof new.target !== "undefined") {
+        //     // 可以做类型检查
+        //     if (new.target === Person) {
         //         this.name = name;
         //     } else {
         //         throw new Error("You must use new with Person.")
         //     }
         // }
-        // // var person = new Person("Nicholas");
-        // // var notAPerson = Person.call(person, "Michael");
+        // // var person = new Person("cql");
+        // // var notAPerson = Person.call(person, "chenky");
 
         // function AnotherPerson(name) {
         //     var tmp = new.target;
         //     Person.call(this, name);
         // }
-        // var person = new Person("Nicholas");
-        // var anotherPerson = new AnotherPerson("Nicholas");
+        // var person = new Person("cql");
+        // var anotherPerson = new AnotherPerson("cql");
 
 
         // 块级函数
-        // "use strict";
         // if (true) {
         //     console.log(typeof doSomething); // "function"
         //     function doSomething() {
@@ -78,9 +84,9 @@
         //     }
         //     doSomething();
         // }
-        // console.log(typeof doSomething); // "undefined"
+        // console.log(typeof doSomething); // "function""
         // if (true) {
-        //     // console.log(typeof doSomething); // throws error
+        //     console.log(typeof doSomething); // throws error
         //     let doSomething = function () {
         //         // ...
         //     }
@@ -94,38 +100,41 @@
         // 没有原型
         // 没有argments
         // 不支持重复的命名参数
-        // var sum = (num1, num2) => { return num1 + num2;}        
         // var sum = function (num1, num2) {
         //     return num1 + num2;
         // };
+        // var sum = (num1, num2) => { return num1 + num2;}        
+
         // this指向
         // var PageHandler = {
         //     id: "123456",
         //     init: function () {
-        //         // document.addEventListener("click", function (event) {
-        //         //     this.doSomething(event.type); // error
-        //         // }, false);
+        //         document.addEventListener("click", function (event) {
+        //             console.log(this)
+        //             this.doSomething(event.type); // error
+        //         }, false);
 
-        //         // document.addEventListener("click", (function (event) {
-        //         //     this.doSomething(event.type); // no error
-        //         // }).bind(this), false);
+        //         document.addEventListener("click", (function (event) {
+        //             this.doSomething(event.type); // no error
+        //         }).bind(this), false);
 
-        //         // document.addEventListener("click",
-        //         // event => this.doSomething(event.type), false);
+        //         document.addEventListener("click",
+        //         event => this.doSomething(event.type), false);
         //     },
         //     doSomething: function (type) {
         //         console.log("Handling " + type + " for " + this.id);
         //     }
         // };
+        // PageHandler.init()
 
         // 不能使用new关键字
         // var MyType = () => {},
         //     object = new MyType();
 
-        // 不能访问argments
+        // 不能访问argments, 思考： 那如果没有命名参数没有arguments怎么访问参数？
         // var sum = (num1, num2) => {
         //     console.log(num1+":"+num2);
-        //     // console.log(arguments[0]); throw error
+        //     console.log(arguments[0]); throw error
         //     return num1 + num2
         // };
         // console.log(sum(1,2));

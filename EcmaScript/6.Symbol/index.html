@@ -15,13 +15,14 @@
         // let firstName = Symbol("test");
         // console.log(firstName);
         
-        // let newSymbol = new Symbol("newSymbol"); // Symbol是原始值
+        // let newSymbol = new Symbol("newSymbol"); // Symbol是原始值，不能new
+        
 
 
         // 可计算属性都可以使用Symbol
         // let firstName = Symbol("test"); 
         // let person = {};
-        // person[firstName] = "Nicholas";
+        // person[firstName] = "cql";
         // console.log(person[firstName]);
 
 
@@ -32,28 +33,28 @@
 
 
         // 比较
-        // let one = 1;
-        // let oneCopy = 1;
-        // one === oneCopy; //true;
+        let one = 1;
+        let oneCopy = 1;
+        one === oneCopy; //true;
 
-        // let first = Symbol();
-        // let second = Symbol();
-        // console.log(first === second);
-        // 需要共享怎么办？
+        let first = Symbol();
+        let second = Symbol();
+        console.log(first === second);
+        // // 需要共享怎么办？
         
         
 
 
         // Symbol共享体系，Symbol注册表检索，有返回，无创建
-        // let uid = Symbol.for("uid");
-        // console.log(uid); // "Symbol(uid)"
-        // let uid2 = Symbol.for("uid");
-        // console.log(uid === uid2);
+        let uid1 = Symbol.for("uid");
+        console.log(uid1); // "Symbol(uid)"
+        let uid2 = Symbol.for("uid");
+        console.log(uid1 === uid2);
 
 
         // 通过keyFor获取键值
-        // let testId = Symbol.for("uid");
-        // console.log(Symbol.keyFor(testId));
+        let testId = Symbol.for("uid");
+        console.log(Symbol.keyFor(testId));
 
 
         

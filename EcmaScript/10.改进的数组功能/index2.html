@@ -15,9 +15,9 @@
         // console.log(arr.indexOf(2));
         // console.log(arr.lastIndexOf(3));
 
-        // // 请问如果我要查找第一个偶数怎么办
+        // // // 请问如果我要查找第一个偶数怎么办
         // let numbers = [25, 30, 35, 40, 45];
-        // // 回调函数（元素，索引，数组），可选参数指定回调函数的this
+        // // 回调函数（元素，索引，数组），可选参数指定回调函数的this, 条件查找find，findIndex更好
         // console.log(numbers.find(n => n > 33)); // 35
         // console.log(numbers.findIndex(n => n > 33)); // 2
 
@@ -28,14 +28,13 @@
         // numbers.fill(1);
         // console.log(numbers.toString()); // 1,1,1,1
 
-// <!-- 
-//         let numbers = [1, 2, 3, 4, 5, 6, 7];
-//         // numbers.fill(1, 2);
-//         // console.log(numbers.toString()); 
-//         // numbers.fill(0, 1, 5);
-//         // 负数length+当前负数
-//         numbers.fill(0, -6, 5);
-//         console.log(numbers.toString());  -->
+        // let numbers = [1, 2, 3, 4, 5, 6, 7];
+        // numbers.fill(1, 2);
+        // console.log(numbers.toString()); 
+        // numbers.fill(0, 1, 5);
+        // // 负数length+当前负数
+        // // numbers.fill(0, -6, 5);
+        // console.log(numbers.toString()); 
 
 
 
@@ -45,11 +44,8 @@
 
         // // 索引2开始填充
         // // 索引0开始复制
-        // // numbers.copyWithin(2, 0);
-        // // console.log(numbers.toString());    
-
-        // numbers.copyWithin(2, 0, 3);
-        // console.log(numbers.toString());
+        // numbers.copyWithin(2, 0);
+        // console.log(numbers.toString());   // 1,2,1,2,3,4
 
         // 这两个方法在定型数组中使用比较多，定型数组：数组中元素都是数值，为高性能的算术运算提供保障，在canvas，webgl中用的较多
     </script>

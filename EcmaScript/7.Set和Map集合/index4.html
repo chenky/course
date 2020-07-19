@@ -10,61 +10,83 @@
     <div class="element"></div>
     <script>
          // Weak Map, set, get, has, delete方法
-        // let map = new WeakMap(),
-        //     element = document.querySelector(".element"),
-        //     key1 = {};
-        // map.set(element, "Original");
-        // map.set(key1, "key1");
-        // console.log(map.has(element)); // true
-        // console.log(map.get(element)); // "Original"
+         // 键名必须是非null类型对象，没有size属性，没有clear方法
+        let map = new WeakMap(),
+            element = document.querySelector(".element"),
+            key1 = {};
+        map.set(element, "Original");
+        map.set(key1, "key1");
+        console.log(map.has(element)); // true
+        console.log(map.get(element)); // "Original"
 
-        // element.parentNode.removeChild(element);
-        // element = null;
-        // // // map.delete(element);
+        element.parentNode.removeChild(element);
+        element = null;
+        map.delete(element);
 
+        // 不能这么判断内存是否回收了
         // console.log(map.has(element)); // false
         // console.log(map.get(element)); // undefined
 
         // ES6之前定义私有对象，都是通过这种立即调用函数表达式的方式，私有对象永远不会被销毁
-        var Person = (function () {
+        // var Person = (function () {
 
-            var privateData = {},
-                privateId = 0;
+        //     var privateData = {},
+        //         privateId = 0;
 
-            function Person(name) {
-                Object.defineProperty(this, "_id", {
-                    value: privateId++
-                });
+        //     function Person(name) {
+        //         Object.defineProperty(this, "_id", {
+        //             value: privateId++
+        //         });
 
-                privateData[this._id] = {
-                    name: name
-                };
-            }
+        //         privateData[this._id] = {
+        //             name: name
+        //         };
+        //     }
 
-            Person.prototype.getName = function () {
-                return privateData[this._id].name;
-            };
+        //     Person.prototype.getName = function () {
+        //       console.log('privateData privateId', privateData, privateId)
+        //         return privateData[this._id].name;
+        //     };
 
-            return Person;
-        }());
+        //     return Person;
+        // }());
+
+        // let person = new Person('cql');
+        // console.log(person.getName())
+        // let person2 = new Person('cql2')
+        // console.log(person2.getName())
+        // // 即使对象null，privateData privateId依然在内存中，闭包的缺点
+        // person = person2 = null
+        // Person.prototype.getName();
         
         // // ES6 Weak Map解决了上述问题，当前实例作为键值，只要当前实例销毁，相关信息自动销毁
-        let Person = (function () {
+        // let Person = (function () {
 
-            let privateData = new WeakMap();
+        //     let privateData = new WeakMap();
 
-            function Person(name) {
-                privateData.set(this, {
-                    name: name
-                });
-            }
+        //     function Person(name) {
+        //         privateData.set(this, {
+        //             name: name
+        //         });
+        //     }
 
-            Person.prototype.getName = function () {
-                return privateData.get(this).name;
-            };
+        //     Person.prototype.getName = function () {
+        //       // console.log(privateData)
+        //         return privateData.get(this).name;
+        //     };
 
-            return Person;
-        }());
+        //     return Person;
+        // }());
+
+        // let person = new Person('cql');
+        // console.log(person.getName())
+        // let person2 = new Person('cql2')
+        // console.log(person2.getName())
+        // // person = null;
+        // // person2 = null
+        // let person3 = new Person('cql3')
+        // console.log(person3.getName())
+
     </script>
 </body>
 </html>

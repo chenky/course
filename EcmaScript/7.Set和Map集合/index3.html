@@ -19,6 +19,7 @@
         // console.log(map.get("title"));
         // console.log(map.get("year"));
 
+        // 也可以使用对象作为key值
         // let map = new Map(),
         //     key1 = {},
         //     key2 = {};
@@ -26,11 +27,11 @@
         // map.set(key2, 42);
         // console.log(map.get(key1)); 
         // console.log(map.get(key2));
-        // Object.is
+        // Object.is作为键名等价判断
 
         // has, delete, clear方法
         // let map = new Map();
-        // map.set("name", "Nicholas");
+        // map.set("name", "cql");
         // map.set("age", 25);
         // console.log(map.size); 
         // console.log(map.has("name")); 
@@ -50,26 +51,29 @@
 
         // Map初始化
         // 思考是否可以这么初始化
-        // let map = new Map({name: "nicholas"});
+        // 不可以这样，因为map的key可以是对象，而name在es6之前只能是字符串，非字符串会类型转换为字符串
+        // let map = new Map({name: "cql"}); 
+        // 数组可以是任何类型
         // let map = new Map([
-        //     ["name", "Nicholas"],
+        //     ["name", "cql"],
         //     ["age", 25]
         // ]);
         // console.log(map.has("name")); // true
-        // console.log(map.get("name")); // "Nicholas"
+        // console.log(map.get("name")); // "cql"
         // console.log(map.has("age")); // true
         // console.log(map.get("age")); // 25
         // console.log(map.size);
 
-        // forEach变量Map
-        // let map = new Map([
-        //     ["name", "Nicholas"],
-        //     ["age", 25]
-        // ]);
-        // map.forEach(function (value, key, ownerMap) {
-        //     console.log(key + " " + value);
-        //     console.log(ownerMap === map);
-        // });
+        // forEach变量Map，按插入顺序和数组索引顺序遍历出来
+        let map = new Map([
+            ["name", "cql"],
+            ["age", 25]
+        ]);
+        map.set('aaa','aaa')
+        map.forEach(function (value, key, ownerMap) {
+            console.log(key + " " + value);
+            // console.log(ownerMap === map);
+        });
 
        
     </script>

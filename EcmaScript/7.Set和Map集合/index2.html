@@ -16,7 +16,7 @@
         //     noDuplicates = eliminateDuplicates(numbers);
         // console.log(noDuplicates);
 
-        // Weak Set集合
+        // Weak Set集合        
         // let set = new Set(),
         //     key = {test: "test"};
         // set.add(key);
@@ -24,14 +24,16 @@
         // key = null;  
         // console.log([...set][0]);
 
-        // weak set只能存储对象值，不能存储原始值；不可迭代（即不支持for-of，forEach，size，keys，values）
+        // weak set只能存储对象的集合，不能存储原始值；不可迭代（即不支持for-of，forEach，size，keys，values）
         // 只有add，delete，has方法
-        // let set = new WeakSet(),
-        //     key = {test: "test"};
-        // set.add(key);
-        // console.log(set.has(key)); // 1
-        // key = null;  
-        // console.log(set.has(key));
+        let set = new WeakSet(),
+            key = {test: "test"};
+        set.add(key);
+        // 不可迭代对象
+        // console.log([...set][0])
+        console.log(set, set.has(key)); // true
+        key = null; 
+        console.log(set)
     </script>
 </body>
 </html>

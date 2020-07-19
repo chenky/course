@@ -14,35 +14,32 @@
         //     name: "target"
         // };
 
+        // // 拦截并可改变底层javascript引擎操作的包装器
         // let proxy = new Proxy(target, {
         //     set(trapTarget, key, value, receiver) {
 
-        //         // ignore existing properties so as not to affect them
+        //         // 新添加到属性必须是number类型，否则异常
         //         if (!trapTarget.hasOwnProperty(key)) {
         //             if (isNaN(value)) {
         //                 throw new TypeError("Property must be a number.");
         //             }
         //         }
 
-        //         // add the property
+        //         // add the property，会同步到目标对象
         //         return Reflect.set(trapTarget, "pre_"+key, (value+1), receiver);
         //     }
         // });
 
         // // adding a new property
-        // proxy.count = 2;
-        // // target.count = 2;
-        // console.log(proxy.count); // 1
-        // console.log(target.count); // 1
-        // console.log(proxy.pre_count); // 1
-        // console.log(target.pre_count); // 1
+        // // proxy.count = 2;
+        // // 没有执行代理中到handle，所以pre_count没有undefined
+        // target.count = 2;
+        // console.log(proxy.count); // 
+        // console.log(target.count); // 
+        // console.log(proxy.pre_count); // 
+        // console.log(target.pre_count); // 
 
-        // you can assign to name because it exists on target already
-        // proxy.name = "proxy";
-        // console.log(proxy.name); // "proxy"
-        // console.log(target.name); // "proxy"
-
-        // // throws an error
+        // throws an error
         // proxy.anotherName = "proxy";
         // target.anotherName = "proxy";
         // console.log(target.anotherName);
@@ -73,10 +70,11 @@
 
 
 // console.log(sum(1, "2", 3, 4));
-// throws error
-// console.log(sumProxy(1, "2", 3, 4));
+// // throws error
+// // console.log(sumProxy(1, "2", 3, 4));
 
-// also throws error
+// // also throws error
+// let instanceSum = new sum();
 // let result = new sumProxy();
         
 // class AbstractNumbers {
@@ -94,6 +92,7 @@
 
 // let AbstractNumbersProxy = new Proxy(AbstractNumbers, {
 //     construct: function(trapTarget, argumentList) {
+//       // 第三个参数是new.target
 //         return Reflect.construct(trapTarget, argumentList, function test() {});
 //     }
 // });
@@ -101,6 +100,7 @@
 
 // let instance = new AbstractNumbersProxy(1, 2, 3, 4);
 // console.log(instance.values);               // [1,2,3,4]
+// new AbstractNumbers();
 
 
 // class Person {
@@ -116,8 +116,8 @@
 //     });
 
 
-// let me = PersonProxy("Nicholas");
-// console.log(me.name);                   // "Nicholas"
+// let me = PersonProxy("cql");
+// console.log(me.name);                   // "cql"
 // console.log(me instanceof Person);      // true
 // console.log(me instanceof PersonProxy); // true
 
@@ -131,45 +131,10 @@
 
 // revoke();
 
-// // throws error
-// // console.log(proxy.name);
-// console.log(typeof proxy);
+// console.log(proxy.name)
 
 
-// function NoSuchProperty() {
-//     // empty
-// }
-
-// NoSuchProperty.prototype = new Proxy({}, {
-//     get(trapTarget, key, receiver) {
-//         throw new ReferenceError(`${key} doesn't exist`);
-//     }
-// });
-
-// class Square extends NoSuchProperty {
-//     constructor(length, width) {
-//         super();
-//         this.length = length;
-//         this.width = width;
-//     }
-
-//     getArea() {
-//         return this.length * this.width;
-//     }
-// }
-
-// let shape = new Square(2, 6);
-
-// let area1 = shape.length * shape.width;
-// console.log(area1);                         // 12
-
-// let area2 = shape.getArea();
-// console.log(area2);                         // 12
-
-// // throws an error because "wdth" doesn't exist
-// let area3 = shape.length * shape.wdth;
-
-
+// 不允许取任何属性值
     // let proxyObj = new Proxy({},{
     //     get(trapTarget, key, receiver){
     //         throw new ReferenceError(`${key} doesn't exist`);
@@ -179,30 +144,24 @@
     // proxyObj.name;
     // console.log("test");
 
-//     const target = {
-//     get foo() {
-//         return this.bar;
-//     },
-//     bar: 3
-// };
-// const handler = {
-//     get(target, propertyKey, receiver) {
-//         if (propertyKey === 'bar') return 2;
-//         console.log('Reflect.get ', Reflect.get(target, propertyKey, receiver)); // this in foo getter references Proxy instance; logs 2
-//         console.log('target[propertyKey] ', target[propertyKey]); // this in foo getter references "target" - logs 3
-//     }
-// };
-// const obj = new Proxy(target, handler);
-// console.log(obj.bar);
-// // 2
-// obj.foo;
-    
-    // function test({a=1,b=2,c=3}={}){
-    //     let extendObj = {a,b,c};
-    //     console.log(extendObj);        
-    // }
-    // test();
-    // test({a:11});
+    const target = {
+        get foo() {
+            return this.bar;
+        },
+        bar: 3
+    };
+    const handler = {
+        get(target, propertyKey, receiver) {
+            if (propertyKey === 'bar') return 2;
+            console.log('Reflect.get ', Reflect.get(target, propertyKey, receiver)); // this in foo getter references Proxy instance; logs 2
+            console.log('target[propertyKey] ', target[propertyKey]); // this in foo getter references "target" - logs 3
+        }
+    };
+    const obj = new Proxy(target, handler);
+    console.log(obj.bar);
+    // 2
+    obj.foo;
+
 
     </script>
 </body>

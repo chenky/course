@@ -29,9 +29,9 @@
         //         reject(ex);
         //     }
         // });
-        // // promise.catch(function (error) {
-        // //     console.log(error.message); // "Explosion!"
-        // // }); 
+        // promise.catch(function (error) {
+        //     console.log(error.message); // "Explosion!"
+        // }); 
         // promise.then(null, function(err){
         //     console.log(err.message);            
         // });
@@ -66,12 +66,13 @@
         // p1.then(function (value) {
         //     throw new Error("Boom!");
         // }).then(null, function(err){
-        //     console.log(err.message);
-            
+        //     console.log('first', err.message);            
         // })
         // .catch(function (error) {
         //     console.log(error.message); // "Boom!"
         // });
+
+
         let p1 = new Promise(function (resolve, reject) {
             throw new Error("P1 error");
         });

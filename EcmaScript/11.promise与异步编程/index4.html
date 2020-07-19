@@ -42,13 +42,14 @@
         //     // resolve(44);
         //     reject(44);
         // });
-
         // let p4 = Promise.all([p1, p2, p3]);
-        // p4.then(null, function(value){
-        //     console.log(Array.isArray(value)) // false
-        //     console.log(value); // 43
-        // });
-        // p4.catch(function (value) {
+        // p4.then(function(){
+        //     // 不会被执行
+        //     console.log(Array.isArray(value)); // true
+        //     console.log(value[0]); // 42
+        //     console.log(value[1]); // 43
+        //     console.log(value[2]); // 44
+        // }).catch(function (value) {
         //     console.log(Array.isArray(value)) // false
         //     console.log(value); // 43
         // });
@@ -66,7 +67,7 @@
         // p4.then(function (value) {
         //     console.log(value); // 42
         // });
-        // // 只要有成功的则返回成功
+        // 只要有成功的则返回成功
         // let p1 = new Promise(function (resolve, reject) {
         //     // resolve(42);
         //     setTimeout(function () {
@@ -83,8 +84,7 @@
         // });
         // let p4 = Promise.race([p1, p2, p3]);
         // p4.then(function(value){
-        //     console.log(value);
-            
+        //     console.log('resolve',value);            
         // }).catch(function (value) {
         //     console.log(value); // 43
         // });

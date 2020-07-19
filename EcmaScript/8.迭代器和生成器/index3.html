@@ -26,14 +26,15 @@
         // console.log(array);
 
         // let map = new Map([
-        //         ["name", "Nicholas"],
+        //         ["name", "cql"],
         //         ["age", 25]
         //     ]),
-        //     array = [...map];
-        // console.log(array);
+        //     arrayMap = [...map];
+        // console.log(arrayMap);
 
         // let smallNumbers = [1, 2, 3],
         //     bigNumbers = [100, 101, 102],
+        //     // [].concat()
         //     allNumbers = [0, ...smallNumbers, ...bigNumbers];
         // console.log(allNumbers.length); // 7
         // console.log(allNumbers);
@@ -42,15 +43,14 @@
         // 给迭代器传递参数
         // function* createIterator() {
         //     let first = yield 1;
-        //     let second = yield first + 2; // 4 + 2
-        //     yield second + 3; // 5 + 3
+        //     let second = yield first + 2; 
+        //     yield second + 3; 
         // }
         // let iterator = createIterator();
         // console.log(iterator.next()); // "{ value: 1, done: false }"
         // // next传入的参数将会替换掉上一个yield的返回值
-        // console.log(iterator.next(4)); // "{ value: 6, done: false }"
-        // // console.log(iterator.next(5)); // "{ value: 8, done: false }"
-        // console.log(iterator.next()); // "{ value: 8, done: false }"
+        // console.log(iterator.next(5)); 
+        // console.log(iterator.next()); 
         // console.log(iterator.next()); // "{ value: undefined, done: true }"
 
         // 迭代器中抛出异常
@@ -59,122 +59,132 @@
         //     let second = yield first + 2; // yield 4 + 2, then throw
         //     yield second + 3; // never is executed
         // }
-        function* createIterator() {
-            let first = yield 1;
-            let second;
+        // function* createIterator() {
+        //     let first = yield 1;
+        //     let second;
 
-            try {
-                second = yield first + 2; // yield 4 + 2, then throw
-            } catch (ex) {
-                // 异常处理，同时会执行next
-                second = 6; 
-            }
-            yield second + 3;
-        }
-        let iterator = createIterator();
-        console.log(iterator.next()); // "{ value: 1, done: false }"
-        console.log(iterator.next(4)); // "{ value: 6, done: false }"
-        console.log(iterator.throw(new Error("Boom")));
-        console.log(iterator.next());
-        
-
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        // function fetchData() {
-        //     return function (callback) {
-        //         setTimeout(function () {
-        //             callback(null, "Hi!");
-        //         }, 50);
-        //     };
-        // }
-
-        // // 异步的任务执行器可以这么写
-        // function run(taskDef) {
-        //     let task = taskDef();
-        //     let result = task.next();
-        //     function step() {
-        //         if (!result.done) {
-        //             if (typeof result.value === "function") {
-        //                 result.value(function (err, data) {
-        //                     if (err) {
-        //                         result = task.throw(err);
-        //                         return;
-        //                     }
-
-        //                     result = task.next(data);
-        //                     step();
-        //                 });
-        //             } else {
-        //                 result = task.next(result.value);
-        //                 step();
-        //             }
-
-        //         }
+        //     try {
+        //         second = yield first + 2; // yield 4 + 2, then throw
+        //     } catch (ex) {
+        //         // 异常处理，同时会执行next
+        //         second = 6; 
         //     }
-        //     step();
+        //     yield second + 3;
         // }
+        // let iterator = createIterator();
+        // console.log(iterator.next()); // "{ value: 1, done: false }"
+        // console.log(iterator.next(4)); // "{ value: 6, done: false }"
+        // console.log(iterator.throw(new Error("Boom")));
+        // console.log(iterator.next());
         
-        // run(function*(){
-        //     let content = yield fetchData();
-        //     console.log(content);
-        //     console.log("Done");    
-        // });
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        function fetchData() {
+            return function (callback) {
+                setTimeout(function () {
+                    callback(null, "Hi!");
+                }, 50);
+            };
+        }
+
+        // 异步的任务执行器可以这么写
+        function run(taskDef) {
+            let task = taskDef();
+            let result = task.next();
+            function step() {
+                if (!result.done) {
+                  // 异步任务，有回调
+                    if (typeof result.value === "function") {
+                        result.value(function (err, data) {
+                            if (err) {
+                                result = task.throw(err);
+                                return;
+                            }
+
+                            result = task.next(data);
+                            step();
+                        });
+                    } else {
+                        result = task.next(result.value);
+                        step();
+                    }
+
+                }
+            }
+            step();
+        }
+        
+        // 同步任务
+        run(function*(){
+            let first = yield 1;
+            console.log(first)
+            let second = yield first + 2;
+            console.log(second)   
+        });
+        console.log('---------------')
+        // 异步任务
+        run(function*(){
+            let content = yield fetchData();
+            console.log(content);
+            console.log("Done");    
+        });
     </script>
 </body>
 

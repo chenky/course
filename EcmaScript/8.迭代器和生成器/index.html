@@ -50,14 +50,6 @@
         //     }
         // }
 
-        // 可迭代对象，ES6中数组，Set集合，Map集合，字符串都是可迭代对象，可以使用for-of访问
-        // let values = [1, 2, 3];
-        // for (let num of values[Symbol.iterator]()) {
-
-        //     // 每次循环都会调用next方法，并把value值存储在num变量中
-        //     console.log(num);
-        // }
-
         // 访问默认迭代器
         // let values = [1, 2, 3];
         // let iterator = values[Symbol.iterator]();
@@ -65,6 +57,14 @@
         // console.log(iterator.next()); // "{ value: 2, done: false }"
         // console.log(iterator.next()); // "{ value: 3, done: false }"
         // console.log(iterator.next()); // "{ value: undefined, done: true }"
+
+        // 可迭代对象，ES6中数组，Set集合，Map集合，字符串都是可迭代对象，可以使用for-of访问
+        // let values = [1, 2, 3];
+        // // for (let num of values[Symbol.iterator]()) {
+        // for (let num of valuess) {
+        //     // 每次循环都会调用next方法，并把value值存储在num变量中
+        //     console.log(num);
+        // }
 
         // 由于具有Symbol.iterator属性的对象都有默认迭代器，因此可用它检测对象是否为可迭代对象
         // function isIterable(object) {

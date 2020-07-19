@@ -11,8 +11,9 @@
         // 生成器返回语句
         // function* createIterator() {
         //     yield 1;
-        //     // return;
-        //     return "return flag";
+        //     return;
+        //     // return "return flag";
+        //     // 前面return了，后面的不会执行了
         //     yield 2;
         //     yield 3;
         // }
@@ -34,7 +35,7 @@
         // }
         // function* createCombinedIterator() {
         //     let result = yield* createNumberIterator();
-        //     // yield result;
+        //     yield result;
         //     yield* createRepeatingIterator(result);
         // }
         // var iterator = createCombinedIterator();
@@ -58,25 +59,6 @@
         // console.log(strIter.next());
         // console.log(strIter.next());
 
-        // 每次调用next麻烦，简单任务执行器
-        // function run(taskDef) {
-        //     let task = taskDef();
-        //     let result = task.next();
-
-        //     function step() {
-        //         if (!result.done) {
-        //             result = task.next(result.value);
-        //             step();
-        //         }
-        //     }
-        //     step();
-        // }
-        // run(function* () {
-        //     let value = yield 1;
-        //     console.log(value); // 1
-        //     value = yield value + 3;
-        //     console.log(value); // 4
-        // });
     </script>
 </body>
 </html>

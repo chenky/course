@@ -20,9 +20,11 @@
         // };
 
         // function Square(length) {
+        //   //修正this对象
         //     Rectangle.call(this, length, length);
         // }
         // Square.prototype = Object.create(Rectangle.prototype, {
+        //   // 修正constructor类型
         //     constructor: {
         //         value: Square,
         //         enumerable: true,
@@ -89,6 +91,10 @@
 
         //         // same as Rectangle.call(this, length, length)
         //         super(length, length);
+        //     }
+
+        //     static create(length) {
+        //         return new Square(length);
         //     }
         // }
 

@@ -2,6 +2,10 @@
  *Fibonacci 数列
  */ 
 // 递归
+/**
+ * 1. 要有边界条件，防止无限递归
+ * 2. 要有子问题，复杂问题分解，确定递归公司
+*/
 function fib(n){
   if(n<3) return 1;
   return fib(n-2) + fib(n-1);
@@ -21,7 +25,8 @@ console.log(fib2(6))
 console.log(fib2(10))
 
 // 尾调用优化
-// 最后一步是函数，并且没有其他操作，就是调用函数
+// 1. 最后一步是调用另一个函数, 不一定出现在函数尾部，只要是最后一步操作即可
+// 2. 并且最后一步不能有其他操作，比如前面return fib(n-2) + fib(n-1);就算有其他操作
 function fibTail(n, first=1, second =1){
   if(n<3) return second;
   return fibTail(n-1, second, (first+second))

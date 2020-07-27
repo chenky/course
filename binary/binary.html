@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>二进制文件操作</title>
+</head>
+<body>
+  <!-- reference: https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer
+  ArrayBuffer 对象用来表示通用的、固定长度的原始二进制数据缓冲区。
+  它是一个字节数组，通常在其他语言中称为“byte array”。
+  你不能直接操作 ArrayBuffer 的内容，而是要通过类型数组对象或 DataView 对象来操作，它们会将缓冲区中的数据表示为特定的格式，并通过这些格式来读写缓冲区的内容 -->
+  <!-- reference: https://developer.mozilla.org/zh-CN/docs/Web/API/Blob
+  Blob 对象表示一个不可变、原始数据的类文件对象。Blob 表示的不一定是JavaScript原生格式的数据。File 接口基于Blob，继承了 blob 的功能并将其扩展使其支持用户系统上的文件。
+  要从其他非blob对象和数据构造一个 Blob，请使用 Blob() 构造函数。要创建一个 blob 数据的子集 blob，请使用 slice() 方法。要获取用户文件系统上的文件对应的 Blob 对象，请参阅 File 文档。 -->
+  <!-- reference: https://developer.mozilla.org/zh-CN/docs/Web/API/URL/createObjectURL
+  URL.createObjectURL() 静态方法会创建一个 DOMString，其中包含一个表示参数中给出的对象的URL。
+  这个 URL 的生命周期和创建它的窗口中的 document 绑定。这个新的URL 对象表示指定的 File 对象或 Blob 对象。 -->
+  <img id="test-img" crossOrigin="anonymous" src="https://upload.jianshu.io/users/upload_avatars/6359034/3348ec8c-2ebb-4129-bbd5-0c5113290d89.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/80/h/80/format/webp" />
+  <canvas id="test_canvas"></canvas>
+  <script>
+    const img = document.getElementById('test-img');
+    img.setAttribute('crossOrigin', 'anonymous');
+    img.onload = function(event){
+      // console.log(event)
+      const {naturalHeight, naturalWidth} = img
+      const testCanvas = document.getElementById('test_canvas');
+      const context = testCanvas.getContext('2d');
+      context.drawImage(img, 0, 0, naturalWidth, naturalHeight);
+      testCanvas.toBlob(function(blob) {
+        console.log(blob)
+      },'image/webp');          
+    }
+    // const testCanvas = document.getElementById('test_canvas').getContext('2d');
+    // testCanvas.
+  </script>
+</body>
+</html>

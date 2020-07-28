@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>position sticky</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    .panel{
+      margin-top: 50px;
+      height: 200px;
+      overflow-y: auto;
+    }
+    .fixed_element{
+      position:fixed;
+      top: 0;
+    }
+    dl {
+      margin: 0;
+      padding: 24px 0 0 0;
+    }
+
+    dt {
+      background: #B8C1C8;
+      border-bottom: 1px solid #989EA4;
+      border-top: 1px solid #717D85;
+      color: #FFF;
+      font: bold 18px/21px Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 2px 0 0 12px;
+      position: -webkit-sticky;
+      position: sticky;
+      top: -1px;
+    }
+
+    dd {
+      font: bold 20px/45px Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 0 0 0 12px;
+      white-space: nowrap;
+    }
+
+    dd + dd {
+      border-top: 1px solid #CCC
+    }
+    .sticky_btm{
+      position:sticky;
+      bottom: 1px;
+      background-color: brown;
+    }
+  </style>
+</head>
+<body>
+  <h3>
+    元素根据正常文档流进行定位，然后相对它的最近滚动祖先（nearest scrolling ancestor）和 containing block (最近块级祖先 nearest block-level ancestor)，包括table-related元素，基于top, right, bottom, 和 left的值进行偏移。偏移值不会影响任何其他元素的位置。
+    该值总是创建一个新的层叠上下文（stacking context）。注意，一个sticky元素会“固定”在离它最近的一个拥有“滚动机制”的祖先上（当该祖先的overflow 是 hidden, scroll, auto, 或 overlay时），即便这个祖先不是最近的真实可滚动祖先。这有效地抑制了任何“sticky”行为
+  </h3>
+  <h4>
+    relative和fixed的结合体，但是fixed是相对视口定位，而sticky是相对它最近的拥有‘滚动机制’（当该祖先的overflow 是 hidden, scroll, auto, 或 overlay时）的祖先元素定位。还有就是一定要设置top, right, bottom, 和 left中的一个值否则无效
+  </h4>
+  <div class="panel">
+    <div class="fixed_element">position fixed</div>
+    <dl>
+      <dt>A</dt>
+      <dd>Andrew W.K.</dd>
+      <dd>Apparat</dd>
+      <dd>Arcade Fire</dd>
+      <dd>At The Drive-In</dd>
+      <dd>Aziz Ansari</dd>
+    </dl>
+    <dl>
+      <dt>C</dt>
+      <dd>Chromeo</dd>
+      <dd>Common</dd>
+      <dd>Converge</dd>
+      <dd>Crystal Castles</dd>
+      <dd class="sticky_btm">Cursive</dd>
+    </dl>
+    <dl>
+      <dt>E</dt>
+      <dd>Explosions In The Sky</dd>
+    </dl>
+    <dl>
+      <dt>T</dt>
+      <dd>Ted Leo & The Pharmacists</dd>
+      <dd>T-Pain</dd>
+      <dd>Thrice</dd>
+      <dd>TV On The Radio</dd>
+      <dd>Two Gallants</dd>
+    </dl>
+  </div>
+</body>
+</html>

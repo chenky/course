@@ -58,7 +58,13 @@
     该值总是创建一个新的层叠上下文（stacking context）。注意，一个sticky元素会“固定”在离它最近的一个拥有“滚动机制”的祖先上（当该祖先的overflow 是 hidden, scroll, auto, 或 overlay时），即便这个祖先不是最近的真实可滚动祖先。这有效地抑制了任何“sticky”行为
   </h3>
   <h4>
-    relative和fixed的结合体，但是fixed是相对视口定位，而sticky是相对它最近的拥有‘滚动机制’（当该祖先的overflow 是 hidden, scroll, auto, 或 overlay时）的祖先元素定位。还有就是一定要设置top, right, bottom, 和 left中的一个值否则无效
+    relative和fixed的结合体，但是fixed是相对视口定位，而sticky是相对它最近的拥有‘滚动机制’（当该元素的overflow 是 visible, scroll, auto, 或 overlay时）的祖先元素定位。还有就是一定要设置top, right, bottom, 和 left中的一个值否则无效
+  </h4>
+  <h4>
+    1. relative和fixed的结合体，但是fixed是相对视口定位，而sticky是相对它最近的拥有‘滚动机制’（当该元素的overflow 是 visible, scroll, auto, 或 overlay时）的祖先元素定位。
+    2. 还有就是一定要设置top, right, bottom, 和 left中的一个值否则无效
+    3. 总是创建一个新的层叠上下文（stacking context）
+    4. 偏移值不会影响任何其他元素的位置
   </h4>
   <div class="panel">
     <div class="fixed_element">position fixed</div>

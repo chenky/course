@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>懒加载运算</title>
+  </head>
+  <body>
+    <script>
+      // 在编程语言理论中，惰性求值（英语：Lazy Evaluation），又译为惰性计算、懒惰求值，
+      // 也称为传需求调用（call-by-need），是一个计算机编程中的一个概念，它的目的是要最小化计算机要做的工作。
+      // 它有两个相关而又有区别的含意，可以表示为“延迟求值”和“最小化求值”，除可以得到性能的提升外，
+      // 惰性计算的最重要的好处是它可以构造一个无限的数据类型。
+      // https://github.com/wangdashuaihenshuai/lazy
+      const range = function* (from, to) {
+        for (let i = from; i < to; i++) {
+          console.log("range\t", i);
+          yield i;
+        }
+      };
+
+      const map = function* (flow, transform) {
+        for (const data of flow) {
+          console.log("map\t", data);
+          yield transform(data);
+        }
+      };
+
+      const filter = function* (flow, condition) {
+        for (const data of flow) {
+          console.log("filter\t", data);
+          if (condition(data)) {
+            yield data;
+          }
+        }
+      };
+
+      const stop = function* (flow, condition) {
+        for (const data of flow) {
+          yield data;
+          if (condition(data)) {
+            break;
+          }
+        }
+      };
+
+      const take = function (flow, number) {
+        let count = 0;
+        const _filter = function (data) {
+          count++;
+          return count >= number;
+        };
+        return stop(flow, _filter);
+      };
+
+      class _Lazy {
+        constructor() {
+          this.iterator = null;
+        }
+
+        range(...args) {
+          this.iterator = range(...args);
+          return this;
+        }
+
+        map(...args) {
+          this.iterator = map(this.iterator, ...args);
+          return this;
+        }
+
+        filter(...args) {
+          this.iterator = filter(this.iterator, ...args);
+          return this;
+        }
+
+        take(...args) {
+          this.iterator = take(this.iterator, ...args);
+          return this;
+        }
+
+        [Symbol.iterator]() {
+          return this.iterator;
+        }
+      }
+
+      function lazy() {
+        return new _Lazy();
+      }
+
+
+      const nums = lazy().range(0, 100).map(n => n * 10).filter(n => n % 3 === 0).take(2);
+
+      for(let n of nums) {
+        console.log('num:\t', n, '\n');
+      }
+
+    </script>
+  </body>
+</html>

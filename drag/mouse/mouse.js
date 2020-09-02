@@ -12,6 +12,9 @@
   const dragableBoxHeight = dragableBox.offsetHeight
   let lastTop = 0
 
+  // top: 相对所有页的顶部坐标，pageHeight: 每页的高度
+  // dragableBoxHeight: 拖动框的高度，pageGap: 页面与页面之间的间距
+  // 返回{ page： 拖动框当前页， top：相对所有页的顶部坐标， currentPageTop： 相对当前页面top位置 }
   function getLegalityPos(top, pageHeight, dragableBoxHeight, pageGap) {
     // 每页的高度加上页与页之间的间隙
     const pageOutHeight = pageHeight + pageGap
@@ -27,7 +30,7 @@
       // 相对当前页的定位
       resPos.currentPageTop = remainder
     } else {
-      // 跨页了，需要根据签章的大于一半的部分在哪一页，然后移动到哪一页
+      // 跨页了，需要根据签章的大于一半的部分在哪一页，然后移动到哪一页，吸附效果，需要重新计算page，top，currentPageTop
       // 如果remainder<=每页高度-(签章高度-间距)/2, 说明要移动到前面一页，否则就是后面一页
       if (remainder <= pageHeight - (dragableBoxHeight - pageGap) / 2) {
         // 移动到前一页
@@ -46,7 +49,7 @@
     return resPos
   }
 
-  // 处理背景色，并且返回当前被覆盖的元素
+  // 还原之前设置过的背景色，并且返回当前被覆盖的元素
   function proccessBg(currentPage, pageContent){
     const targetElement = pageContent.children[currentPage-1]
     const targetPrevElement = targetElement.previousElementSibling
@@ -57,7 +60,7 @@
     return targetElement
   }
 
-  // 因为已经在限定区域，所以只需要判断上下，不需要判断左右
+  // 因为已经在限定区域，所以只需要判断上下，不需要判断左右，进入和离开目标时背景变色
   function proccessIntersect(top, pageHeight, pageGap, dragableBox, pageContent){
     // 没有上下移动则什么都不做
     if(lastTop === top) return
@@ -69,8 +72,6 @@
     // 如果lastTop>top 表示上一次的top比当前的大，则用户向上移动
     const currentPage = Math.ceil( (lastTop>top ? top : dragableBoxBottom) / pageOutHeight) || 1
     
-    // console.log(currentPage,'current page')
-
     const targetElement = proccessBg(currentPage, pageContent)
 
     const targetElementTop = targetElement.offsetTop;
@@ -95,6 +96,7 @@
     // 使用clientX和pageX都可以，因为你计算的是鼠标相对元素左上角的位置
     const distanceX = e.clientX - this.offsetLeft;
     const distanceY = e.clientY - this.offsetTop;
+    // 拖动需要处理限定范围和进入离开页面
     document.onmousemove = function (e) {
       let leftX = e.clientX - distanceX; //表示被拖动的元素离父元素的左边距
       let topY = e.clientY - distanceY;
@@ -121,6 +123,7 @@
       // 记录最后一次的坐标
       lastTop = topY
     };
+    // 需要处理跨页，吸附效果，以及重新处理进入离开页面（因为有吸附效果）
     document.onmouseup = function (e) {
       const legalityPos = getLegalityPos(lastTop, pageHeight, dragableBoxHeight, pageGap)
       const { top, page, currentPageTop } = legalityPos

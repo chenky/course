@@ -11,6 +11,16 @@
 //   console.log('get the result:', val)
 // })
 
+// 作为返回值
+// function getSomeFn(){
+//   return function(){
+//     console.log('inner function is call')
+//   }
+// }
+// const tempFn = getSomeFn()
+// console.log(typeof tempFn)
+// tempFn()
+
 // 作为返回， 比如curry化
 // function multiplyBy(num1) {
 //   return function(num2) {
@@ -33,12 +43,13 @@ function add2(...args){
 function curry(fn){
   let allArgs=[]
   return function reFn(...args){
-    if(args.length===0){
-      return fn.apply(this, allArgs)
-    } else {
-      allArgs = allArgs.concat(args)
-      return reFn
-    }
+    // if(args.length===0){
+    //   return fn.apply(this, allArgs)
+    // } else {
+    //   allArgs = allArgs.concat(args)
+    //   return reFn
+    // }
+    // if(fn.length === allArgs.length)
   }
 }
 const curryAdd2 = curry(add2)

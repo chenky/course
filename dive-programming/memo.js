@@ -21,6 +21,7 @@
 // }
 // const memoAdd = memo(add)
 // console.log(memoAdd(1,2,3))
+// console.log(memoAdd(4,5,6))
 // console.log(memoAdd(1,2,3))
 
 // Function.prototype.memo = function(){

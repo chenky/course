@@ -43,13 +43,12 @@ function add2(...args){
 function curry(fn){
   let allArgs=[]
   return function reFn(...args){
-    // if(args.length===0){
-    //   return fn.apply(this, allArgs)
-    // } else {
-    //   allArgs = allArgs.concat(args)
-    //   return reFn
-    // }
-    // if(fn.length === allArgs.length)
+    if(args.length===0){
+      return fn.apply(this, allArgs)
+    } else {
+      allArgs = allArgs.concat(args)
+      return reFn
+    }
   }
 }
 const curryAdd2 = curry(add2)

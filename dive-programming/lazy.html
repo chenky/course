@@ -19,15 +19,15 @@
         }
       };
 
-      const map = function* (flow, transform) {
-        for (const data of flow) {
+      const map = function* (iterator, transform) {
+        for (const data of iterator) {
           console.log("map\t", data);
           yield transform(data);
         }
       };
 
-      const filter = function* (flow, condition) {
-        for (const data of flow) {
+      const filter = function* (iterator, condition) {
+        for (const data of iterator) {
           console.log("filter\t", data);
           if (condition(data)) {
             yield data;
@@ -35,8 +35,8 @@
         }
       };
 
-      const stop = function* (flow, condition) {
-        for (const data of flow) {
+      const stop = function* (iterator, condition) {
+        for (const data of iterator) {
           yield data;
           if (condition(data)) {
             break;
@@ -44,13 +44,13 @@
         }
       };
 
-      const take = function (flow, number) {
+      const take = function (iterator, number) {
         let count = 0;
-        const _filter = function (data) {
+        const _condition = function (data) {
           count++;
           return count >= number;
         };
-        return stop(flow, _filter);
+        return stop(iterator, _condition);
       };
 
       class _Lazy {
@@ -78,6 +78,15 @@
           return this;
         }
 
+        values(){
+          let arr = []
+          for (const num of this) {
+            arr.push(num)
+          }
+          return arr
+        }
+
+        // 类只要实现这个就可以使用for of遍历
         [Symbol.iterator]() {
           return this.iterator;
         }
@@ -88,11 +97,16 @@
       }
 
 
-      const nums = lazy().range(0, 100).map(n => n * 10).filter(n => n % 3 === 0).take(2);
-
-      for(let n of nums) {
-        console.log('num:\t', n, '\n');
-      }
+      // 1. 需要迭代功能
+      // 2. 需要判断迭代是否完成  
+      // generator
+      // const nums = lazy().range(0, 10000000000000000000000000000).map(n => n * 10).filter(n => n % 3 === 0).take(2);
+      // // 在使用时才会执行
+      // for(let n of nums) {
+      //   console.log('num:\t', n, '\n');
+      // }
+      const nums = lazy().range(0, 100).map(n => n * 10).filter(n => n % 3 === 0).take(2).values();
+      console.log(nums)
 
     </script>
   </body>
